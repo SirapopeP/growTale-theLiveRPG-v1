@@ -1,0 +1,177 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Family {
+  id          Int      @id @default(autoincrement())
+  name        String   @db.VarChar(100)
+  inviteCode  String   @unique @db.VarChar(20) @map("invite_code")
+  createdAt   DateTime @default(now()) @map("created_at")
+  status      String   @default("active") @db.VarChar(20)
+
+  // Relations
+  members     FamilyMember[]
+  quests      Quest[]
+  rewards     Reward[]
+  activities  Activity[]
+  redeemLogs  RewardRedeem[]
+
+  @@map("families")
+}
+
+model FamilyMember {
+  id        Int      @id @default(autoincrement())
+  familyId  Int      @map("family_id")
+  userId    Int      @map("user_id")
+  role      String   @db.VarChar(20) // 'Parent' or 'Child'
+  joinedAt  DateTime @default(now()) @map("joined_at")
+
+  // Relations
+  family    Family @relation(fields: [familyId], references: [id], onDelete: Cascade)
+  user      User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([familyId, userId])
+  @@map("family_members")
+}
+
+model User {
+  id           Int      @id @default(autoincrement())
+  email        String   @unique @db.VarChar(100)
+  passwordHash String   @map("password_hash")
+  displayName  String   @map("display_name") @db.VarChar(100)
+  avatarUrl    String?  @map("avatar_url")
+  createdAt    DateTime @default(now()) @map("created_at")
+  status       String   @default("active") @db.VarChar(20)
+
+  // Relations
+  profile      Profile?
+  familyMembers FamilyMember[]
+  createdQuests Quest[] @relation("QuestCreator")
+  assignedQuests Quest[] @relation("QuestAssignee")
+  questLogs    QuestLog[]
+  createdRewards Reward[] @relation("RewardCreator")
+  redeemLogs   RewardRedeem[]
+  activities   Activity[]
+  approvedRedeems RewardRedeem[] @relation("RedeemApprover")
+
+  @@map("users")
+}
+
+model Profile {
+  id        Int      @id @default(autoincrement())
+  userId    Int      @unique @map("user_id")
+  level     Int      @default(1)
+  exp       Int      @default(0)
+  coin      Int      @default(0)
+  stats     Json     @default("{\"strength\":0,\"wisdom\":0,\"discipline\":0,\"creativity\":0,\"kindness\":0}")
+  badges    Json     @default("[]")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+
+  // Relations
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("profiles")
+}
+
+model Quest {
+  id          Int      @id @default(autoincrement())
+  familyId    Int      @map("family_id")
+  createdBy   Int      @map("created_by")
+  assignedTo  Int?     @map("assigned_to")
+  title       String   @db.VarChar(200)
+  description String?
+  category    String?  @db.VarChar(50) // "บ้าน", "เรียน", "สุขภาพ", "พฤติกรรม"
+  rewardExp   Int      @default(0) @map("reward_exp")
+  rewardCoin  Int      @default(0) @map("reward_coin")
+  dueDate     DateTime? @map("due_date") @db.Date
+  status      String   @default("pending") @db.VarChar(20) // pending / submitted / verified / completed / expired
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  // Relations
+  family      Family     @relation(fields: [familyId], references: [id], onDelete: Cascade)
+  creator     User       @relation("QuestCreator", fields: [createdBy], references: [id], onDelete: SetNull)
+  assignee    User?      @relation("QuestAssignee", fields: [assignedTo], references: [id], onDelete: SetNull)
+  questLogs   QuestLog[]
+
+  @@map("quests")
+}
+
+model QuestLog {
+  id          Int      @id @default(autoincrement())
+  questId     Int      @map("quest_id")
+  userId      Int      @map("user_id")
+  action      String   @db.VarChar(50) // started / submitted / verified / completed / expired
+  note        String?
+  evidenceUrl String?  @map("evidence_url")
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  // Relations
+  quest       Quest     @relation(fields: [questId], references: [id], onDelete: Cascade)
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("quest_logs")
+}
+
+model Reward {
+  id          Int       @id @default(autoincrement())
+  familyId    Int       @map("family_id")
+  createdBy   Int       @map("created_by")
+  title       String    @db.VarChar(200)
+  description String?
+  costCoin    Int       @map("cost_coin")
+  stock       Int       @default(0)
+  expireAt    DateTime? @map("expire_at")
+  status      String    @default("active") @db.VarChar(20)
+  createdAt   DateTime  @default(now()) @map("created_at")
+
+  // Relations
+  family      Family        @relation(fields: [familyId], references: [id], onDelete: Cascade)
+  creator     User          @relation("RewardCreator", fields: [createdBy], references: [id], onDelete: SetNull)
+  redeemLogs  RewardRedeem[]
+
+  @@map("rewards")
+}
+
+model RewardRedeem {
+  id          Int       @id @default(autoincrement())
+  rewardId    Int       @map("reward_id")
+  userId      Int       @map("user_id")
+  familyId    Int       @map("family_id")
+  costCoin    Int       @map("cost_coin")
+  status      String    @default("pending") @db.VarChar(20) // pending / approved / rejected
+  approvedBy  Int?      @map("approved_by")
+  createdAt   DateTime  @default(now()) @map("created_at")
+  approvedAt  DateTime? @map("approved_at")
+
+  // Relations
+  reward      Reward    @relation(fields: [rewardId], references: [id], onDelete: Cascade)
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  family      Family    @relation(fields: [familyId], references: [id], onDelete: Cascade)
+  approver    User?     @relation("RedeemApprover", fields: [approvedBy], references: [id])
+
+  @@map("reward_redeems")
+}
+
+model Activity {
+  id        Int      @id @default(autoincrement())
+  familyId  Int      @map("family_id")
+  userId    Int?     @map("user_id")
+  type      String   @db.VarChar(50) // quest_created, quest_completed, reward_redeemed, etc.
+  message   String
+  refId     Int?     @map("ref_id") // quest_id or reward_id
+  createdAt DateTime @default(now()) @map("created_at")
+
+  // Relations
+  family    Family  @relation(fields: [familyId], references: [id], onDelete: Cascade)
+  user      User?   @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@map("activities")
+}

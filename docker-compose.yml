@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: growtale-postgres
+    environment:
+      POSTGRES_DB: growtale
+      POSTGRES_USER: growtale
+      POSTGRES_PASSWORD: growtale123
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
