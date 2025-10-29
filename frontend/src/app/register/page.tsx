@@ -54,7 +54,7 @@ export default function RegisterPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-base-200">
-      <div className="card w-96 bg-base-100 shadow-xl">
+      <div className="card w-96 bg-base-100 card-elevate interactive rounded-xl">
         <div className="card-body">
           <h1 className="card-title text-2xl font-bold text-center mb-6">
             สมัครสมาชิก GrowTale
@@ -144,7 +144,7 @@ export default function RegisterPage() {
             <div className="form-control mt-6">
               <button
                 type="submit"
-                className={`btn btn-primary ${loading ? 'loading' : ''}`}
+                className={`btn btn-primary focus-ring interactive ${loading ? 'loading' : ''}`}
                 disabled={loading}
               >
                 {loading ? 'กำลังสมัครสมาชิก...' : 'สมัครสมาชิก'}
@@ -155,7 +155,7 @@ export default function RegisterPage() {
           <div className="divider">หรือ</div>
 
           <div className="text-center">
-            <Link href="/login" className="link link-primary">
+            <Link href="/login" className="link link-primary smooth-transform focus-ring">
               เข้าสู่ระบบ
             </Link>
           </div>

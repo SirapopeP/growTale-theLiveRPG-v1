@@ -77,10 +77,10 @@ export default function RewardsPage() {
     <div className="min-h-screen bg-base-200">
       <div className="navbar bg-base-100 shadow-lg">
         <div className="flex-1">
-          <a className="btn btn-ghost text-xl">GrowTale</a>
+          <a className="btn btn-ghost text-xl smooth-transform focus-ring">GrowTale</a>
         </div>
         <div className="flex-none">
-          <a href="/dashboard" className="btn btn-ghost">กลับไป Dashboard</a>
+          <a href="/dashboard" className="btn btn-ghost smooth-transform focus-ring">กลับไป Dashboard</a>
         </div>
       </div>
 
@@ -92,13 +92,13 @@ export default function RewardsPage() {
           {user?.role === 'Parent' && (
             <div className="flex gap-2">
               <button
-                className="btn btn-primary"
+                className="btn btn-primary focus-ring interactive"
                 onClick={() => setShowCreateModal(true)}
               >
                 สร้าง Reward ใหม่
               </button>
               <button
-                className="btn btn-secondary"
+                className="btn btn-secondary focus-ring interactive"
                 onClick={() => setShowRequestsModal(true)}
               >
                 คำขอแลก ({redeemRequests.length})
@@ -109,7 +109,7 @@ export default function RewardsPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {rewards.map((reward) => (
-            <div key={reward.id} className="card bg-base-100 shadow-xl">
+            <div key={reward.id} className="card bg-base-100 card-elevate interactive">
               <div className="card-body">
                 <h2 className="card-title">{reward.title}</h2>
                 {reward.description && (
@@ -133,7 +133,7 @@ export default function RewardsPage() {
                 <div className="card-actions justify-end mt-4">
                   {user?.role === 'Child' ? (
                     <button
-                      className={`btn btn-primary btn-sm ${!reward.canRedeem ? 'btn-disabled' : ''}`}
+                      className={`btn btn-primary btn-sm focus-ring interactive ${!reward.canRedeem ? 'btn-disabled' : ''}`}
                       onClick={() => handleRedeemReward(reward.id)}
                       disabled={!reward.canRedeem}
                     >
@@ -141,7 +141,7 @@ export default function RewardsPage() {
                     </button>
                   ) : (
                     <button
-                      className="btn btn-error btn-sm"
+                      className="btn btn-error btn-sm focus-ring interactive"
                       onClick={() => handleDeleteReward(reward.id)}
                     >
                       ลบ

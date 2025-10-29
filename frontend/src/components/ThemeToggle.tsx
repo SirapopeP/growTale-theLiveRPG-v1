@@ -8,7 +8,7 @@ export const ThemeToggle: React.FC = () => {
   return (
     <button
       aria-label="Toggle theme"
-      className="btn btn-ghost btn-sm"
+      className="btn btn-ghost btn-sm smooth-transform focus-ring interactive"
       onClick={toggleTheme}
       title={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
     >

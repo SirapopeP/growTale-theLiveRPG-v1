@@ -31,7 +31,7 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-base-200">
-      <div className="card w-96 bg-base-100 shadow-xl">
+      <div className="card w-96 bg-base-100 card-elevate interactive rounded-xl">
         <div className="card-body">
           <h1 className="card-title text-2xl font-bold text-center mb-6">
             เข้าสู่ระบบ GrowTale
@@ -73,7 +73,7 @@ export default function LoginPage() {
             <div className="form-control mt-6">
               <button
                 type="submit"
-                className={`btn btn-primary ${loading ? 'loading' : ''}`}
+                className={`btn btn-primary focus-ring interactive ${loading ? 'loading' : ''}`}
                 disabled={loading}
               >
                 {loading ? 'กำลังเข้าสู่ระบบ...' : 'เข้าสู่ระบบ'}
@@ -84,7 +84,7 @@ export default function LoginPage() {
           <div className="divider">หรือ</div>
 
           <div className="text-center">
-            <Link href="/register" className="link link-primary">
+            <Link href="/register" className="link link-primary smooth-transform focus-ring">
               สมัครสมาชิกใหม่
             </Link>
           </div>

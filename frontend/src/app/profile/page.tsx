@@ -61,10 +61,10 @@ export default function ProfilePage() {
     <div className="min-h-screen bg-base-200">
       <div className="navbar bg-base-100 shadow-lg">
         <div className="flex-1">
-          <a className="btn btn-ghost text-xl">GrowTale</a>
+          <a className="btn btn-ghost text-xl smooth-transform focus-ring">GrowTale</a>
         </div>
         <div className="flex-none">
-          <a href="/dashboard" className="btn btn-ghost">กลับไป Dashboard</a>
+          <a href="/dashboard" className="btn btn-ghost smooth-transform focus-ring">กลับไป Dashboard</a>
         </div>
       </div>
 
@@ -72,7 +72,7 @@ export default function ProfilePage() {
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-3xl font-bold">Profile</h1>
           <button
-            className="btn btn-primary"
+            className="btn btn-primary focus-ring interactive"
             onClick={() => setShowEditModal(true)}
           >
             แก้ไข Profile
@@ -82,7 +82,7 @@ export default function ProfilePage() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Profile Card */}
           <div className="lg:col-span-1">
-            <div className="card bg-base-100 shadow-xl">
+            <div className="card bg-base-100 card-elevate interactive">
               <div className="card-body text-center">
                 <div className="avatar mb-4">
                   <div className="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
@@ -135,7 +135,7 @@ export default function ProfilePage() {
           {/* Stats and Activities */}
           <div className="lg:col-span-2 space-y-6">
             {/* Stats */}
-            <div className="card bg-base-100 shadow-xl">
+            <div className="card bg-base-100 card-elevate interactive">
               <div className="card-body">
                 <h3 className="card-title text-xl mb-4">สถิติความสามารถ</h3>
                 <div className="space-y-4">
@@ -157,7 +157,7 @@ export default function ProfilePage() {
             </div>
 
             {/* Recent Activities */}
-            <div className="card bg-base-100 shadow-xl">
+            <div className="card bg-base-100 card-elevate interactive">
               <div className="card-body">
                 <h3 className="card-title text-xl mb-4">กิจกรรมล่าสุด</h3>
                 <div className="space-y-3">
@@ -226,12 +226,12 @@ export default function ProfilePage() {
               <div className="modal-action">
                 <button
                   type="button"
-                  className="btn btn-ghost"
+                  className="btn btn-ghost focus-ring interactive"
                   onClick={() => setShowEditModal(false)}
                 >
                   ยกเลิก
                 </button>
-                <button type="submit" className="btn btn-primary">
+                <button type="submit" className="btn btn-primary focus-ring interactive">
                   บันทึก
                 </button>
               </div>

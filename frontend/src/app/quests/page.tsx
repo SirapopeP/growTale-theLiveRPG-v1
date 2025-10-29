@@ -68,10 +68,10 @@ export default function QuestsPage() {
     <div className="min-h-screen bg-base-200">
       <div className="navbar bg-base-100 shadow-lg">
         <div className="flex-1">
-          <a className="btn btn-ghost text-xl">GrowTale</a>
+          <a className="btn btn-ghost text-xl smooth-transform focus-ring">GrowTale</a>
         </div>
         <div className="flex-none">
-          <a href="/dashboard" className="btn btn-ghost">กลับไป Dashboard</a>
+          <a href="/dashboard" className="btn btn-ghost smooth-transform focus-ring">กลับไป Dashboard</a>
         </div>
       </div>
 
@@ -82,7 +82,7 @@ export default function QuestsPage() {
           </h1>
           {user?.role === 'Parent' && (
             <button
-              className="btn btn-primary"
+              className="btn btn-primary focus-ring interactive"
               onClick={() => setShowCreateModal(true)}
             >
               สร้าง Quest ใหม่
@@ -92,7 +92,7 @@ export default function QuestsPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {quests.map((quest) => (
-            <div key={quest.id} className="card bg-base-100 shadow-xl">
+            <div key={quest.id} className="card bg-base-100 card-elevate interactive">
               <div className="card-body">
                 <h2 className="card-title">{quest.title}</h2>
                 {quest.description && (
@@ -133,13 +133,13 @@ export default function QuestsPage() {
                     {quest.status === 'submitted' && (
                       <div className="flex gap-2">
                         <button
-                          className="btn btn-success btn-sm"
+                          className="btn btn-success btn-sm focus-ring interactive"
                           onClick={() => handleVerifyQuest(quest.id, true)}
                         >
                           อนุมัติ
                         </button>
                         <button
-                          className="btn btn-error btn-sm"
+                          className="btn btn-error btn-sm focus-ring interactive"
                           onClick={() => handleVerifyQuest(quest.id, false)}
                         >
                           ปฏิเสธ
@@ -147,7 +147,7 @@ export default function QuestsPage() {
                       </div>
                     )}
                     <button
-                      className="btn btn-error btn-sm"
+                      className="btn btn-error btn-sm focus-ring interactive"
                       onClick={() => handleDeleteQuest(quest.id)}
                     >
                       ลบ
@@ -158,12 +158,12 @@ export default function QuestsPage() {
                 {user?.role === 'Child' && quest.assignee?.id === user.id && (
                   <div className="card-actions justify-end mt-4">
                     {quest.status === 'pending' && (
-                      <button className="btn btn-primary btn-sm">
+                      <button className="btn btn-primary btn-sm focus-ring interactive">
                         เริ่มทำ
                       </button>
                     )}
                     {quest.status === 'in_progress' && (
-                      <button className="btn btn-secondary btn-sm">
+                      <button className="btn btn-secondary btn-sm focus-ring interactive">
                         ส่ง Quest
                       </button>
                     )}

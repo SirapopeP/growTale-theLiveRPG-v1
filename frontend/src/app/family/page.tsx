@@ -58,10 +58,10 @@ export default function FamilyPage() {
     <div className="min-h-screen bg-base-200">
       <div className="navbar bg-base-100 shadow-lg">
         <div className="flex-1">
-          <a className="btn btn-ghost text-xl">GrowTale</a>
+          <a className="btn btn-ghost text-xl smooth-transform focus-ring">GrowTale</a>
         </div>
         <div className="flex-none">
-          <a href="/dashboard" className="btn btn-ghost">กลับไป Dashboard</a>
+          <a href="/dashboard" className="btn btn-ghost smooth-transform focus-ring">กลับไป Dashboard</a>
         </div>
       </div>
 
@@ -71,7 +71,7 @@ export default function FamilyPage() {
         {family ? (
           <div className="space-y-6">
             {/* Family Info */}
-            <div className="card bg-base-100 shadow-xl">
+            <div className="card bg-base-100 card-elevate interactive">
               <div className="card-body">
                 <h2 className="card-title text-2xl">{family.name}</h2>
                 <div className="flex items-center gap-4 mt-4">
@@ -87,7 +87,7 @@ export default function FamilyPage() {
                         readOnly
                       />
                       <button
-                        className="btn btn-primary"
+                        className="btn btn-primary focus-ring interactive"
                         onClick={copyInviteCode}
                       >
                         คัดลอก
@@ -102,12 +102,12 @@ export default function FamilyPage() {
             </div>
 
             {/* Family Members */}
-            <div className="card bg-base-100 shadow-xl">
+            <div className="card bg-base-100 card-elevate interactive">
               <div className="card-body">
                 <h3 className="card-title text-xl mb-4">สมาชิกครอบครัว</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                   {family.members.map((member) => (
-                    <div key={member.id} className="card bg-base-200 shadow">
+                    <div key={member.id} className="card bg-base-200 card-elevate interactive">
                       <div className="card-body p-4">
                         <div className="flex items-center gap-3">
                           <div className="avatar placeholder">
@@ -156,14 +156,14 @@ export default function FamilyPage() {
             <div className="flex gap-4 justify-center">
               {user?.role === 'Parent' && (
                 <button
-                  className="btn btn-primary"
+                  className="btn btn-primary focus-ring interactive"
                   onClick={() => setShowCreateModal(true)}
                 >
                   สร้างครอบครัวใหม่
                 </button>
               )}
               <button
-                className="btn btn-secondary"
+                className="btn btn-secondary focus-ring interactive"
                 onClick={() => setShowJoinModal(true)}
               >
                 เข้าร่วมครอบครัว

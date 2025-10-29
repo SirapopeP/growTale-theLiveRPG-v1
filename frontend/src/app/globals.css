@@ -10,3 +10,33 @@ html, body {
 body {
   @apply antialiased;
 }
+
+/* Design tokens and component presets for maintainability */
+@layer components {
+  /* Smooth transforms and transitions utility */
+  .smooth-transform {
+    @apply transition-transform transition-colors transition-opacity duration-200 ease-emphasized;
+  }
+
+  /* Interactive surfaces (cards, buttons) */
+  .interactive {
+    will-change: transform;
+  }
+
+  /* Elevation hover for cards */
+  .card-elevate {
+    @apply shadow-elev-1 hover:shadow-elev-2 hover:-translate-y-0.5 smooth-transform;
+  }
+
+  /* Button spacing + motion presets (works with DaisyUI variants) */
+  .btn {
+    @apply h-10 min-h-10 px-4 md:px-5 rounded-lg gap-2 smooth-transform;
+  }
+  .btn-sm { @apply h-9 min-h-9 px-3 rounded-md; }
+  .btn-lg { @apply h-12 min-h-12 px-6 rounded-xl; }
+
+  /* Focus styles for accessibility */
+  .focus-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-opacity-60 focus-visible:ring-offset-2 focus-visible:ring-offset-base-100;
+  }
+}
