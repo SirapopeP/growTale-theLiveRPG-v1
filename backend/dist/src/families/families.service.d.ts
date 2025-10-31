@@ -18,7 +18,8 @@ export declare class FamiliesService {
                     userId: number;
                 } | null;
             } & {
-                email: string;
+                email: string | null;
+                phone: string | null;
                 passwordHash: string;
                 displayName: string;
                 avatarUrl: string | null;
@@ -54,7 +55,8 @@ export declare class FamiliesService {
                     userId: number;
                 } | null;
             } & {
-                email: string;
+                email: string | null;
+                phone: string | null;
                 passwordHash: string;
                 displayName: string;
                 avatarUrl: string | null;
@@ -90,7 +92,8 @@ export declare class FamiliesService {
                     userId: number;
                 } | null;
             } & {
-                email: string;
+                email: string | null;
+                phone: string | null;
                 passwordHash: string;
                 displayName: string;
                 avatarUrl: string | null;
@@ -125,7 +128,8 @@ export declare class FamiliesService {
                 userId: number;
             } | null;
         } & {
-            email: string;
+            email: string | null;
+            phone: string | null;
             passwordHash: string;
             displayName: string;
             avatarUrl: string | null;
@@ -154,7 +158,8 @@ export declare class FamiliesService {
                     userId: number;
                 } | null;
             } & {
-                email: string;
+                email: string | null;
+                phone: string | null;
                 passwordHash: string;
                 displayName: string;
                 avatarUrl: string | null;
@@ -176,5 +181,17 @@ export declare class FamiliesService {
         name: string;
         inviteCode: string;
     }) | null>;
+    searchFamilies(query: string): Promise<{
+        id: number;
+        name: string;
+        members: any;
+    }[]>;
+    joinById(userId: number, familyId: number): Promise<{
+        id: number;
+        role: import("@prisma/client").$Enums.FamilyRole;
+        familyId: number;
+        userId: number;
+        joinedAt: Date;
+    }>;
     private generateUniqueInviteCode;
 }

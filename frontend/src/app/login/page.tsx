@@ -20,7 +20,7 @@ export default function LoginPage() {
     setError('');
 
     try {
-      await login({ email, password });
+      await login({ identifier: email, password });
       router.push('/dashboard');
     } catch (err: any) {
       setError(err.response?.data?.message || 'เข้าสู่ระบบไม่สำเร็จ');

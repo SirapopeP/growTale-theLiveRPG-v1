@@ -19,15 +19,22 @@ var UserRole;
 })(UserRole || (exports.UserRole = UserRole = {}));
 class RegisterDto {
     email;
+    phone;
     password;
     displayName;
     role;
 }
 exports.RegisterDto = RegisterDto;
 __decorate([
+    (0, class_validator_1.ValidateIf)((o) => !!o.email),
     (0, class_validator_1.IsEmail)(),
     __metadata("design:type", String)
 ], RegisterDto.prototype, "email", void 0);
+__decorate([
+    (0, class_validator_1.ValidateIf)((o) => !!o.phone),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], RegisterDto.prototype, "phone", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.MinLength)(6),
@@ -42,14 +49,14 @@ __decorate([
     __metadata("design:type", String)
 ], RegisterDto.prototype, "role", void 0);
 class LoginDto {
-    email;
+    identifier;
     password;
 }
 exports.LoginDto = LoginDto;
 __decorate([
-    (0, class_validator_1.IsEmail)(),
+    (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
-], LoginDto.prototype, "email", void 0);
+], LoginDto.prototype, "identifier", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)

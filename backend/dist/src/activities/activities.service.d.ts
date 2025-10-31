@@ -15,7 +15,8 @@ export declare class ActivitiesService {
                 userId: number;
             } | null;
         } & {
-            email: string;
+            email: string | null;
+            phone: string | null;
             passwordHash: string;
             displayName: string;
             avatarUrl: string | null;
@@ -28,8 +29,8 @@ export declare class ActivitiesService {
         id: number;
         familyId: number;
         refId: number | null;
-        userId: number | null;
         type: string;
+        userId: number | null;
         message: string;
     })[]>;
     getActivity(activityId: number, userId: number): Promise<{
@@ -45,7 +46,8 @@ export declare class ActivitiesService {
                 userId: number;
             } | null;
         } & {
-            email: string;
+            email: string | null;
+            phone: string | null;
             passwordHash: string;
             displayName: string;
             avatarUrl: string | null;
@@ -58,8 +60,8 @@ export declare class ActivitiesService {
         id: number;
         familyId: number;
         refId: number | null;
-        userId: number | null;
         type: string;
+        userId: number | null;
         message: string;
     }>;
     getActivitiesByType(userId: number, type: string, limit?: number): Promise<({
@@ -75,7 +77,8 @@ export declare class ActivitiesService {
                 userId: number;
             } | null;
         } & {
-            email: string;
+            email: string | null;
+            phone: string | null;
             passwordHash: string;
             displayName: string;
             avatarUrl: string | null;
@@ -88,8 +91,8 @@ export declare class ActivitiesService {
         id: number;
         familyId: number;
         refId: number | null;
-        userId: number | null;
         type: string;
+        userId: number | null;
         message: string;
     })[]>;
     getRecentActivities(userId: number, hours?: number): Promise<({
@@ -105,7 +108,8 @@ export declare class ActivitiesService {
                 userId: number;
             } | null;
         } & {
-            email: string;
+            email: string | null;
+            phone: string | null;
             passwordHash: string;
             displayName: string;
             avatarUrl: string | null;
@@ -118,8 +122,8 @@ export declare class ActivitiesService {
         id: number;
         familyId: number;
         refId: number | null;
-        userId: number | null;
         type: string;
+        userId: number | null;
         message: string;
     })[]>;
     getActivityStats(userId: number): Promise<{

@@ -207,6 +207,35 @@ export class FamiliesService {
     return membership.family;
   }
 
+  async searchFamilies(query: string) {
+    const families = await this.prisma.family.findMany({
+      where: {
+        name: { contains: query, mode: 'insensitive' },
+      },
+      include: {
+        _count: { select: { members: true } },
+      },
+      take: 20,
+    });
+    return families.map((f) => ({ id: f.id, name: f.name, members: (f as any)._count.members }));
+  }
+
+  async joinById(userId: number, familyId: number) {
+    const existingMembership = await this.prisma.familyMember.findFirst({
+      where: { userId },
+    });
+    if (existingMembership) {
+      throw new ConflictException('User is already a member of a family');
+    }
+    return this.prisma.familyMember.create({
+      data: {
+        familyId,
+        userId,
+        role: 'Parent',
+      },
+    });
+  }
+
   private async generateUniqueInviteCode(): Promise<string> {
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
     let inviteCode: string = '';

@@ -16,7 +16,8 @@ export declare class RewardsController {
                 userId: number;
             } | null;
         } & {
-            email: string;
+            email: string | null;
+            phone: string | null;
             passwordHash: string;
             displayName: string;
             avatarUrl: string | null;
@@ -62,7 +63,8 @@ export declare class RewardsController {
                 userId: number;
             } | null;
         } & {
-            email: string;
+            email: string | null;
+            phone: string | null;
             passwordHash: string;
             displayName: string;
             avatarUrl: string | null;
@@ -94,7 +96,8 @@ export declare class RewardsController {
                 userId: number;
             } | null;
         } & {
-            email: string;
+            email: string | null;
+            phone: string | null;
             passwordHash: string;
             displayName: string;
             avatarUrl: string | null;
@@ -139,7 +142,8 @@ export declare class RewardsController {
                     userId: number;
                 } | null;
             } & {
-                email: string;
+                email: string | null;
+                phone: string | null;
                 passwordHash: string;
                 displayName: string;
                 avatarUrl: string | null;
@@ -170,7 +174,8 @@ export declare class RewardsController {
                 userId: number;
             } | null;
         } & {
-            email: string;
+            email: string | null;
+            phone: string | null;
             passwordHash: string;
             displayName: string;
             avatarUrl: string | null;
@@ -203,7 +208,8 @@ export declare class RewardsController {
                 userId: number;
             } | null;
         } & {
-            email: string;
+            email: string | null;
+            phone: string | null;
             passwordHash: string;
             displayName: string;
             avatarUrl: string | null;
@@ -247,7 +253,8 @@ export declare class RewardsController {
                 userId: number;
             } | null;
         } & {
-            email: string;
+            email: string | null;
+            phone: string | null;
             passwordHash: string;
             displayName: string;
             avatarUrl: string | null;
@@ -291,7 +298,8 @@ export declare class RewardsController {
                 userId: number;
             } | null;
         } & {
-            email: string;
+            email: string | null;
+            phone: string | null;
             passwordHash: string;
             displayName: string;
             avatarUrl: string | null;

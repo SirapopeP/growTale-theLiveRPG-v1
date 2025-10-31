@@ -5,7 +5,7 @@ export declare class UsersService {
     constructor(prisma: PrismaService);
     getProfile(userId: number): Promise<{
         id: number;
-        email: string;
+        email: string | null;
         displayName: string;
         avatarUrl: string | null;
         role: import("@prisma/client").$Enums.FamilyRole;
@@ -29,7 +29,7 @@ export declare class UsersService {
     }>;
     updateProfile(userId: number, updateUserDto: UpdateUserDto): Promise<{
         id: number;
-        email: string;
+        email: string | null;
         displayName: string;
         avatarUrl: string | null;
         role: import("@prisma/client").$Enums.FamilyRole;

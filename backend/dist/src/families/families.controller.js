@@ -38,17 +38,23 @@ let FamiliesController = class FamiliesController {
     async getMyFamily(user) {
         return this.familiesService.getUserFamily(this.getUserId(user));
     }
+    async searchFamilies(q) {
+        return this.familiesService.searchFamilies(q || '');
+    }
     async getFamily(familyId, user) {
         return this.familiesService.getFamily(familyId, this.getUserId(user));
     }
     async getFamilyMembers(familyId, user) {
         return this.familiesService.getFamilyMembers(familyId, this.getUserId(user));
     }
+    async joinById(user, familyId) {
+        return this.familiesService.joinById(this.getUserId(user), familyId);
+    }
 };
 exports.FamiliesController = FamiliesController;
 __decorate([
     (0, common_1.Post)(),
-    (0, common_1.UseGuards)(roles_guard_1.RolesGuard),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard),
     (0, roles_decorator_1.Roles)('Parent'),
     __param(0, (0, current_user_decorator_1.CurrentUser)()),
     __param(1, (0, common_1.Body)()),
@@ -57,6 +63,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], FamiliesController.prototype, "createFamily", null);
 __decorate([
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     (0, common_1.Post)('join'),
     __param(0, (0, current_user_decorator_1.CurrentUser)()),
     __param(1, (0, common_1.Body)()),
@@ -65,6 +72,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], FamiliesController.prototype, "joinFamily", null);
 __decorate([
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     (0, common_1.Get)('my-family'),
     __param(0, (0, current_user_decorator_1.CurrentUser)()),
     __metadata("design:type", Function),
@@ -72,6 +80,14 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], FamiliesController.prototype, "getMyFamily", null);
 __decorate([
+    (0, common_1.Get)('search'),
+    __param(0, (0, common_1.Param)('q')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], FamiliesController.prototype, "searchFamilies", null);
+__decorate([
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     (0, common_1.Get)(':id'),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __param(1, (0, current_user_decorator_1.CurrentUser)()),
@@ -80,6 +96,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], FamiliesController.prototype, "getFamily", null);
 __decorate([
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     (0, common_1.Get)(':id/members'),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __param(1, (0, current_user_decorator_1.CurrentUser)()),
@@ -87,9 +104,17 @@ __decorate([
     __metadata("design:paramtypes", [Number, Object]),
     __metadata("design:returntype", Promise)
 ], FamiliesController.prototype, "getFamilyMembers", null);
+__decorate([
+    (0, common_1.Post)('join-by-id'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_user_decorator_1.CurrentUser)()),
+    __param(1, (0, common_1.Body)('familyId', common_1.ParseIntPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Number]),
+    __metadata("design:returntype", Promise)
+], FamiliesController.prototype, "joinById", null);
 exports.FamiliesController = FamiliesController = __decorate([
     (0, common_1.Controller)('families'),
-    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     __metadata("design:paramtypes", [families_service_1.FamiliesService])
 ], FamiliesController);
 //# sourceMappingURL=families.controller.js.map

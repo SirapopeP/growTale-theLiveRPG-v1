@@ -21,7 +21,8 @@ export declare class FamiliesController {
                     userId: number;
                 } | null;
             } & {
-                email: string;
+                email: string | null;
+                phone: string | null;
                 passwordHash: string;
                 displayName: string;
                 avatarUrl: string | null;
@@ -59,7 +60,8 @@ export declare class FamiliesController {
                     userId: number;
                 } | null;
             } & {
-                email: string;
+                email: string | null;
+                phone: string | null;
                 passwordHash: string;
                 displayName: string;
                 avatarUrl: string | null;
@@ -97,7 +99,8 @@ export declare class FamiliesController {
                     userId: number;
                 } | null;
             } & {
-                email: string;
+                email: string | null;
+                phone: string | null;
                 passwordHash: string;
                 displayName: string;
                 avatarUrl: string | null;
@@ -119,6 +122,11 @@ export declare class FamiliesController {
         name: string;
         inviteCode: string;
     }) | null>;
+    searchFamilies(q: string): Promise<{
+        id: number;
+        name: string;
+        members: any;
+    }[]>;
     getFamily(familyId: number, user: {
         id: number;
     }): Promise<{
@@ -135,7 +143,8 @@ export declare class FamiliesController {
                     userId: number;
                 } | null;
             } & {
-                email: string;
+                email: string | null;
+                phone: string | null;
                 passwordHash: string;
                 displayName: string;
                 avatarUrl: string | null;
@@ -172,7 +181,8 @@ export declare class FamiliesController {
                 userId: number;
             } | null;
         } & {
-            email: string;
+            email: string | null;
+            phone: string | null;
             passwordHash: string;
             displayName: string;
             avatarUrl: string | null;
@@ -187,4 +197,13 @@ export declare class FamiliesController {
         userId: number;
         joinedAt: Date;
     })[]>;
+    joinById(user: {
+        id: number;
+    }, familyId: number): Promise<{
+        id: number;
+        role: import("@prisma/client").$Enums.FamilyRole;
+        familyId: number;
+        userId: number;
+        joinedAt: Date;
+    }>;
 }

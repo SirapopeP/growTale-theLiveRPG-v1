@@ -68,7 +68,8 @@ body {
   }
 
   /* Inputs */
-  .input-gt { @apply input input-bordered rounded-lg px-4 py-3 border-base-300; }
+  /* Use core Tailwind utilities (daisyUI component classes are not available in @apply) */
+  .input-gt { @apply w-full rounded-lg px-4 py-3 border border-base-300 bg-base-100 text-base-content; }
   .input-gt:focus { outline: none; border-color: var(--gt-primary); }
 
   /* Cards */

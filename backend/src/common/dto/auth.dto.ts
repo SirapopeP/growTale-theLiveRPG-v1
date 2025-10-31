@@ -1,4 +1,4 @@
-import { IsEmail, IsString, MinLength, IsEnum } from 'class-validator';
+import { IsEmail, IsString, MinLength, IsEnum, ValidateIf } from 'class-validator';
 
 export enum UserRole {
   ADMIN = 'Admin',
@@ -7,8 +7,14 @@ export enum UserRole {
 }
 
 export class RegisterDto {
+  // Accept either email or phone (at least one)
+  @ValidateIf((o) => !!o.email)
   @IsEmail()
-  email: string;
+  email?: string;
+
+  @ValidateIf((o) => !!o.phone)
+  @IsString()
+  phone?: string;
 
   @IsString()
   @MinLength(6)
@@ -22,8 +28,8 @@ export class RegisterDto {
 }
 
 export class LoginDto {
-  @IsEmail()
-  email: string;
+  @IsString()
+  identifier: string; // email or phone
 
   @IsString()
   password: string;
@@ -39,7 +45,8 @@ export class AuthResponseDto {
   refreshToken: string;
   user: {
     id: number;
-    email: string;
+    email?: string;
+    phone?: string;
     displayName: string;
     role: string;
   };

@@ -17,7 +17,8 @@ export declare class QuestsService {
                 userId: number;
             } | null;
         } & {
-            email: string;
+            email: string | null;
+            phone: string | null;
             passwordHash: string;
             displayName: string;
             avatarUrl: string | null;
@@ -37,7 +38,8 @@ export declare class QuestsService {
                 userId: number;
             } | null;
         } & {
-            email: string;
+            email: string | null;
+            phone: string | null;
             passwordHash: string;
             displayName: string;
             avatarUrl: string | null;
@@ -81,7 +83,8 @@ export declare class QuestsService {
                 userId: number;
             } | null;
         } & {
-            email: string;
+            email: string | null;
+            phone: string | null;
             passwordHash: string;
             displayName: string;
             avatarUrl: string | null;
@@ -101,7 +104,8 @@ export declare class QuestsService {
                 userId: number;
             } | null;
         } & {
-            email: string;
+            email: string | null;
+            phone: string | null;
             passwordHash: string;
             displayName: string;
             avatarUrl: string | null;
@@ -145,7 +149,8 @@ export declare class QuestsService {
                 userId: number;
             } | null;
         } & {
-            email: string;
+            email: string | null;
+            phone: string | null;
             passwordHash: string;
             displayName: string;
             avatarUrl: string | null;
@@ -165,7 +170,8 @@ export declare class QuestsService {
                 userId: number;
             } | null;
         } & {
-            email: string;
+            email: string | null;
+            phone: string | null;
             passwordHash: string;
             displayName: string;
             avatarUrl: string | null;
@@ -200,7 +206,8 @@ export declare class QuestsService {
                 userId: number;
             } | null;
         } & {
-            email: string;
+            email: string | null;
+            phone: string | null;
             passwordHash: string;
             displayName: string;
             avatarUrl: string | null;
@@ -220,7 +227,8 @@ export declare class QuestsService {
                 userId: number;
             } | null;
         } & {
-            email: string;
+            email: string | null;
+            phone: string | null;
             passwordHash: string;
             displayName: string;
             avatarUrl: string | null;
@@ -255,7 +263,8 @@ export declare class QuestsService {
                 userId: number;
             } | null;
         } & {
-            email: string;
+            email: string | null;
+            phone: string | null;
             passwordHash: string;
             displayName: string;
             avatarUrl: string | null;
@@ -275,7 +284,8 @@ export declare class QuestsService {
                 userId: number;
             } | null;
         } & {
-            email: string;
+            email: string | null;
+            phone: string | null;
             passwordHash: string;
             displayName: string;
             avatarUrl: string | null;
@@ -310,7 +320,8 @@ export declare class QuestsService {
                 userId: number;
             } | null;
         } & {
-            email: string;
+            email: string | null;
+            phone: string | null;
             passwordHash: string;
             displayName: string;
             avatarUrl: string | null;
@@ -330,7 +341,8 @@ export declare class QuestsService {
                 userId: number;
             } | null;
         } & {
-            email: string;
+            email: string | null;
+            phone: string | null;
             passwordHash: string;
             displayName: string;
             avatarUrl: string | null;

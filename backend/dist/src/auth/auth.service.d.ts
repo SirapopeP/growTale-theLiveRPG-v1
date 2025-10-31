@@ -6,6 +6,13 @@ export declare class AuthService {
     private jwtService;
     constructor(prisma: PrismaService, jwtService: JwtService);
     register(registerDto: RegisterDto): Promise<AuthResponseDto>;
+    checkIdentifier(value: string): Promise<{
+        exists: boolean;
+        type?: undefined;
+    } | {
+        exists: boolean;
+        type: string;
+    }>;
     login(loginDto: LoginDto): Promise<AuthResponseDto>;
     refreshToken(refreshToken: string): Promise<{
         accessToken: string;
@@ -13,7 +20,7 @@ export declare class AuthService {
     private generateTokens;
     validateUser(userId: number): Promise<{
         id: number;
-        email: string;
+        email: string | null;
         displayName: string;
         role: import("@prisma/client").$Enums.Role;
         profile: {

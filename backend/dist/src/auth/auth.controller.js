@@ -29,6 +29,9 @@ let AuthController = class AuthController {
     async login(loginDto) {
         return this.authService.login(loginDto);
     }
+    async checkIdentifier(value) {
+        return this.authService.checkIdentifier(value);
+    }
     async refresh(refreshDto) {
         return this.authService.refreshToken(refreshDto.refreshToken);
     }
@@ -51,6 +54,13 @@ __decorate([
     __metadata("design:paramtypes", [auth_dto_1.LoginDto]),
     __metadata("design:returntype", Promise)
 ], AuthController.prototype, "login", null);
+__decorate([
+    (0, common_1.Post)('check-identifier'),
+    __param(0, (0, common_1.Body)('value')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], AuthController.prototype, "checkIdentifier", null);
 __decorate([
     (0, common_1.Post)('refresh'),
     __param(0, (0, common_1.Body)()),

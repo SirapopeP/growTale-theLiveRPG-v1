@@ -29,11 +29,18 @@ export class AuthService {
   ) {}
 
   async register(registerDto: RegisterDto): Promise<AuthResponseDto> {
-    const { email, password, displayName, role } = registerDto;
+    const { email, phone, password, displayName } = registerDto;
+    // force Parent role for this registration flow
+    const role: UserRole = 'Parent' as UserRole;
 
     // Check if user already exists
-    const existingUser = await this.prisma.user.findUnique({
-      where: { email },
+    const existingUser = await this.prisma.user.findFirst({
+      where: {
+        OR: [
+          email ? { email } : undefined,
+          phone ? { phone } : undefined,
+        ].filter(Boolean) as any,
+      },
     });
 
     if (existingUser) {
@@ -46,7 +53,8 @@ export class AuthService {
     // Create user with profile and userRole
     const user = await this.prisma.user.create({
       data: {
-        email,
+        ...(email ? { email } : {}),
+        ...(phone ? { phone } : {}),
         passwordHash,
         displayName,
         profile: {
@@ -77,25 +85,43 @@ export class AuthService {
     });
 
     // Generate tokens
-    const tokens = await this.generateTokens(user.id, email, role);
+    const tokens = await this.generateTokens(user.id, user.email ?? user.phone ?? '', role);
 
     return {
       ...tokens,
       user: {
         id: user.id,
-        email: user.email,
+        email: user.email ?? undefined,
+        phone: user.phone ?? undefined,
         displayName: user.displayName,
         role,
       },
     };
   }
+  async checkIdentifier(value: string) {
+    if (!value) {
+      return { exists: false };
+    }
+    const existing = await this.prisma.user.findFirst({
+      where: {
+        OR: [{ email: value }, { phone: value }],
+      },
+      select: { id: true, email: true, phone: true },
+    });
+    return { exists: !!existing, type: value.includes('@') ? 'email' : 'phone' };
+  }
 
   async login(loginDto: LoginDto): Promise<AuthResponseDto> {
-    const { email, password } = loginDto;
+    const { identifier, password } = loginDto;
 
     // Find user with userRole
-    const user = await this.prisma.user.findUnique({
-      where: { email },
+    const user = await this.prisma.user.findFirst({
+      where: {
+        OR: [
+          { email: identifier },
+          { phone: identifier },
+        ],
+      },
       include: {
         profile: true,
         userRole: true,
@@ -121,13 +147,14 @@ export class AuthService {
     const role: UserRole = (user.userRole?.role || 'Parent') as UserRole; // Default to Parent if no role set
 
     // Generate tokens
-    const tokens = await this.generateTokens(user.id, email, role);
+    const tokens = await this.generateTokens(user.id, user.email ?? user.phone ?? '', role);
 
     return {
       ...tokens,
       user: {
         id: user.id,
-        email: user.email,
+        email: user.email ?? undefined,
+        phone: user.phone ?? undefined,
         displayName: user.displayName,
         role,
       },

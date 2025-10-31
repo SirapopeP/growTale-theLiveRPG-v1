@@ -5,6 +5,13 @@ export declare class AuthController {
     constructor(authService: AuthService);
     register(registerDto: RegisterDto): Promise<import("../common/dto/auth.dto").AuthResponseDto>;
     login(loginDto: LoginDto): Promise<import("../common/dto/auth.dto").AuthResponseDto>;
+    checkIdentifier(value: string): Promise<{
+        exists: boolean;
+        type?: undefined;
+    } | {
+        exists: boolean;
+        type: string;
+    }>;
     refresh(refreshDto: RefreshTokenDto): Promise<{
         accessToken: string;
     }>;

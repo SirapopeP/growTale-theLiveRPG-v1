@@ -18,6 +18,11 @@ export class AuthController {
     return this.authService.login(loginDto);
   }
 
+  @Post('check-identifier')
+  async checkIdentifier(@Body('value') value: string) {
+    return this.authService.checkIdentifier(value);
+  }
+
   @Post('refresh')
   async refresh(@Body() refreshDto: RefreshTokenDto) {
     return this.authService.refreshToken(refreshDto.refreshToken);

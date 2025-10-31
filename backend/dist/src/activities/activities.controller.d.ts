@@ -15,7 +15,8 @@ export declare class ActivitiesController {
                 userId: number;
             } | null;
         } & {
-            email: string;
+            email: string | null;
+            phone: string | null;
             passwordHash: string;
             displayName: string;
             avatarUrl: string | null;
@@ -28,8 +29,8 @@ export declare class ActivitiesController {
         id: number;
         familyId: number;
         refId: number | null;
-        userId: number | null;
         type: string;
+        userId: number | null;
         message: string;
     })[]>;
     getRecentActivities(user: any, hours?: number): Promise<({
@@ -45,7 +46,8 @@ export declare class ActivitiesController {
                 userId: number;
             } | null;
         } & {
-            email: string;
+            email: string | null;
+            phone: string | null;
             passwordHash: string;
             displayName: string;
             avatarUrl: string | null;
@@ -58,8 +60,8 @@ export declare class ActivitiesController {
         id: number;
         familyId: number;
         refId: number | null;
-        userId: number | null;
         type: string;
+        userId: number | null;
         message: string;
     })[]>;
     getActivityStats(user: any): Promise<{
@@ -83,7 +85,8 @@ export declare class ActivitiesController {
                 userId: number;
             } | null;
         } & {
-            email: string;
+            email: string | null;
+            phone: string | null;
             passwordHash: string;
             displayName: string;
             avatarUrl: string | null;
@@ -96,8 +99,8 @@ export declare class ActivitiesController {
         id: number;
         familyId: number;
         refId: number | null;
-        userId: number | null;
         type: string;
+        userId: number | null;
         message: string;
     })[]>;
     getActivity(activityId: number, user: any): Promise<{
@@ -113,7 +116,8 @@ export declare class ActivitiesController {
                 userId: number;
             } | null;
         } & {
-            email: string;
+            email: string | null;
+            phone: string | null;
             passwordHash: string;
             displayName: string;
             avatarUrl: string | null;
@@ -126,8 +130,8 @@ export declare class ActivitiesController {
         id: number;
         familyId: number;
         refId: number | null;
-        userId: number | null;
         type: string;
+        userId: number | null;
         message: string;
     }>;
 }

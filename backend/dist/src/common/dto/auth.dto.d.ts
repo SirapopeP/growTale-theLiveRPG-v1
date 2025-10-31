@@ -4,13 +4,14 @@ export declare enum UserRole {
     CHILD = "Child"
 }
 export declare class RegisterDto {
-    email: string;
+    email?: string;
+    phone?: string;
     password: string;
     displayName: string;
     role: UserRole;
 }
 export declare class LoginDto {
-    email: string;
+    identifier: string;
     password: string;
 }
 export declare class RefreshTokenDto {
@@ -21,7 +22,8 @@ export declare class AuthResponseDto {
     refreshToken: string;
     user: {
         id: number;
-        email: string;
+        email?: string;
+        phone?: string;
         displayName: string;
         role: string;
     };

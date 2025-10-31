@@ -16,7 +16,6 @@ import { Roles } from '../common/decorators/roles.decorator';
 import { CurrentUser } from '../common/decorators/current-user.decorator';
 
 @Controller('families')
-@UseGuards(JwtAuthGuard)
 export class FamiliesController {
   constructor(private familiesService: FamiliesService) {}
 
@@ -26,7 +25,7 @@ export class FamiliesController {
   }
 
   @Post()
-  @UseGuards(RolesGuard)
+  @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles('Parent')
   async createFamily(
     @CurrentUser() user: { id: number },
@@ -38,6 +37,7 @@ export class FamiliesController {
     );
   }
 
+  @UseGuards(JwtAuthGuard)
   @Post('join')
   async joinFamily(
     @CurrentUser() user: { id: number },
@@ -46,11 +46,19 @@ export class FamiliesController {
     return this.familiesService.joinFamily(this.getUserId(user), joinFamilyDto);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Get('my-family')
   async getMyFamily(@CurrentUser() user: { id: number }) {
     return this.familiesService.getUserFamily(this.getUserId(user));
   }
 
+  // Public search must be declared before param routes to avoid being captured by :id
+  @Get('search')
+  async searchFamilies(@Param('q') q: string) {
+    return this.familiesService.searchFamilies(q || '');
+  }
+
+  @UseGuards(JwtAuthGuard)
   @Get(':id')
   async getFamily(
     @Param('id', ParseIntPipe) familyId: number,
@@ -59,6 +67,7 @@ export class FamiliesController {
     return this.familiesService.getFamily(familyId, this.getUserId(user));
   }
 
+  @UseGuards(JwtAuthGuard)
   @Get(':id/members')
   async getFamilyMembers(
     @Param('id', ParseIntPipe) familyId: number,
@@ -68,5 +77,15 @@ export class FamiliesController {
       familyId,
       this.getUserId(user),
     );
+  }
+
+
+  @Post('join-by-id')
+  @UseGuards(JwtAuthGuard)
+  async joinById(
+    @CurrentUser() user: { id: number },
+    @Body('familyId', ParseIntPipe) familyId: number,
+  ) {
+    return this.familiesService.joinById(this.getUserId(user), familyId);
   }
 }

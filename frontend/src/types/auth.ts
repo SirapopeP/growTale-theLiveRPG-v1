@@ -32,12 +32,13 @@ export interface AuthResponse {
 }
 
 export interface LoginRequest {
-  email: string;
+  identifier: string;
   password: string;
 }
 
 export interface RegisterRequest {
-  email: string;
+  email?: string;
+  phone?: string;
   password: string;
   displayName: string;
   role: 'Parent' | 'Child';

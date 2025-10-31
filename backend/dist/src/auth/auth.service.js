@@ -55,9 +55,15 @@ let AuthService = class AuthService {
         this.jwtService = jwtService;
     }
     async register(registerDto) {
-        const { email, password, displayName, role } = registerDto;
-        const existingUser = await this.prisma.user.findUnique({
-            where: { email },
+        const { email, phone, password, displayName } = registerDto;
+        const role = 'Parent';
+        const existingUser = await this.prisma.user.findFirst({
+            where: {
+                OR: [
+                    email ? { email } : undefined,
+                    phone ? { phone } : undefined,
+                ].filter(Boolean),
+            },
         });
         if (existingUser) {
             throw new common_1.ConflictException('User with this email already exists');
@@ -65,7 +71,8 @@ let AuthService = class AuthService {
         const passwordHash = await bcrypt.hash(password, 10);
         const user = await this.prisma.user.create({
             data: {
-                email,
+                ...(email ? { email } : {}),
+                ...(phone ? { phone } : {}),
                 passwordHash,
                 displayName,
                 profile: {
@@ -94,21 +101,39 @@ let AuthService = class AuthService {
                 userRole: true,
             },
         });
-        const tokens = await this.generateTokens(user.id, email, role);
+        const tokens = await this.generateTokens(user.id, user.email ?? user.phone ?? '', role);
         return {
             ...tokens,
             user: {
                 id: user.id,
-                email: user.email,
+                email: user.email ?? undefined,
+                phone: user.phone ?? undefined,
                 displayName: user.displayName,
                 role,
             },
         };
     }
+    async checkIdentifier(value) {
+        if (!value) {
+            return { exists: false };
+        }
+        const existing = await this.prisma.user.findFirst({
+            where: {
+                OR: [{ email: value }, { phone: value }],
+            },
+            select: { id: true, email: true, phone: true },
+        });
+        return { exists: !!existing, type: value.includes('@') ? 'email' : 'phone' };
+    }
     async login(loginDto) {
-        const { email, password } = loginDto;
-        const user = await this.prisma.user.findUnique({
-            where: { email },
+        const { identifier, password } = loginDto;
+        const user = await this.prisma.user.findFirst({
+            where: {
+                OR: [
+                    { email: identifier },
+                    { phone: identifier },
+                ],
+            },
             include: {
                 profile: true,
                 userRole: true,
@@ -127,12 +152,13 @@ let AuthService = class AuthService {
             throw new common_1.UnauthorizedException('Invalid credentials');
         }
         const role = (user.userRole?.role || 'Parent');
-        const tokens = await this.generateTokens(user.id, email, role);
+        const tokens = await this.generateTokens(user.id, user.email ?? user.phone ?? '', role);
         return {
             ...tokens,
             user: {
                 id: user.id,
-                email: user.email,
+                email: user.email ?? undefined,
+                phone: user.phone ?? undefined,
                 displayName: user.displayName,
                 role,
             },
