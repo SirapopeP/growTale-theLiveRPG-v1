@@ -5,6 +5,7 @@ import { AuthProvider } from '@/contexts/AuthContext';
 import { SocketProvider } from '@/contexts/SocketContext';
 import { ThemeProvider } from '@/contexts/ThemeContext';
 import { ThemeToggle } from '@/components/ThemeToggle';
+import TopNav from '@/components/TopNav';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -25,12 +26,7 @@ export default function RootLayout({
           <AuthProvider>
             <SocketProvider>
               <div className="min-h-dvh flex flex-col">
-                <header className="navbar bg-base-100/80 backdrop-blur border-b border-base-300 text-base-content">
-                  <div className="flex-1 px-2 text-xl font-semibold">GrowTale</div>
-                  <div className="flex-none px-2">
-                    <ThemeToggle />
-                  </div>
-                </header>
+                <TopNav />
                 <main className="flex-1">{children}</main>
               </div>
             </SocketProvider>

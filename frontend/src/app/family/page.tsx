@@ -56,15 +56,6 @@ export default function FamilyPage() {
 
   return (
     <div className="min-h-screen bg-base-200">
-      <div className="navbar bg-base-100 shadow-lg">
-        <div className="flex-1">
-          <a className="btn btn-ghost text-xl smooth-transform focus-ring">GrowTale</a>
-        </div>
-        <div className="flex-none">
-          <a href="/dashboard" className="btn btn-ghost smooth-transform focus-ring">กลับไป Dashboard</a>
-        </div>
-      </div>
-
       <div className="container mx-auto p-6">
         <h1 className="text-3xl font-bold mb-6">จัดการครอบครัว</h1>
 
