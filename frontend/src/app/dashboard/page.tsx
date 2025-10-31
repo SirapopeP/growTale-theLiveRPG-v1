@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { useI18n } from '@/contexts/I18nContext';
 
 function WelcomeCard({ className = '' }: { className?: string }) {
   return (
@@ -15,13 +16,14 @@ function WelcomeCard({ className = '' }: { className?: string }) {
 }
 
 export default function DashboardPage() {
+  const { t } = useI18n();
   return (
     <div className="min-h-[100svh] bg-gradient-to-b from-[var(--gt-bg-from)] to-[var(--gt-bg-to)]">
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
         <div className="mb-6">
-          <div className="h1-gt">Home</div>
-          <div className="text-base-content/70">Welcome to Growtale - The Live RPG</div>
+          <div className="h1-gt">{t('home.title')}</div>
+          <div className="text-base-content/70">{t('home.subtitle')}</div>
         </div>
 
         {/* Grid */}
