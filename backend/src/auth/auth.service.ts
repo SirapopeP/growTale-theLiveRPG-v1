@@ -43,7 +43,7 @@ export class AuthService {
     // Hash password
     const passwordHash = await bcrypt.hash(password, 10);
 
-    // Create user and profile
+    // Create user with profile and userRole
     const user = await this.prisma.user.create({
       data: {
         email,
@@ -64,9 +64,15 @@ export class AuthService {
             badges: [],
           },
         },
+        userRole: {
+          create: {
+            role: role as any, // Map UserRole enum to Prisma Role enum
+          },
+        },
       },
       include: {
         profile: true,
+        userRole: true,
       },
     });
 
@@ -87,11 +93,12 @@ export class AuthService {
   async login(loginDto: LoginDto): Promise<AuthResponseDto> {
     const { email, password } = loginDto;
 
-    // Find user
+    // Find user with userRole
     const user = await this.prisma.user.findUnique({
       where: { email },
       include: {
         profile: true,
+        userRole: true,
         familyMembers: {
           include: {
             family: true,
@@ -110,9 +117,8 @@ export class AuthService {
       throw new UnauthorizedException('Invalid credentials');
     }
 
-    // Get user role from family membership
-    const familyMember = user.familyMembers[0];
-    const role: UserRole = (familyMember?.role || 'Child') as UserRole; // Default to Child if no family
+    // Get user role from userRole table (not from family membership)
+    const role: UserRole = (user.userRole?.role || 'Parent') as UserRole; // Default to Parent if no role set
 
     // Generate tokens
     const tokens = await this.generateTokens(user.id, email, role);
@@ -137,6 +143,7 @@ export class AuthService {
       const user = await this.prisma.user.findUnique({
         where: { id: payload.sub },
         include: {
+          userRole: true,
           familyMembers: {
             include: {
               family: true,
@@ -149,8 +156,8 @@ export class AuthService {
         throw new UnauthorizedException('Invalid refresh token');
       }
 
-      const familyMember = user.familyMembers[0];
-      const role = familyMember?.role || 'Child';
+      // Get role from userRole table
+      const role = user.userRole?.role || 'Parent';
 
       const accessToken = this.jwtService.sign(
         { sub: user.id, email: user.email, role },
@@ -184,6 +191,7 @@ export class AuthService {
       where: { id: userId },
       include: {
         profile: true,
+        userRole: true,
         familyMembers: {
           include: {
             family: true,
@@ -196,8 +204,9 @@ export class AuthService {
       return null;
     }
 
+    // Get role from userRole table
+    const role = user.userRole?.role || 'Parent';
     const familyMember = user.familyMembers[0];
-    const role = familyMember?.role || 'Child';
 
     return {
       id: user.id,

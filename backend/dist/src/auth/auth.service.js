@@ -83,9 +83,15 @@ let AuthService = class AuthService {
                         badges: [],
                     },
                 },
+                userRole: {
+                    create: {
+                        role: role,
+                    },
+                },
             },
             include: {
                 profile: true,
+                userRole: true,
             },
         });
         const tokens = await this.generateTokens(user.id, email, role);
@@ -105,6 +111,7 @@ let AuthService = class AuthService {
             where: { email },
             include: {
                 profile: true,
+                userRole: true,
                 familyMembers: {
                     include: {
                         family: true,
@@ -119,8 +126,7 @@ let AuthService = class AuthService {
         if (!isPasswordValid) {
             throw new common_1.UnauthorizedException('Invalid credentials');
         }
-        const familyMember = user.familyMembers[0];
-        const role = (familyMember?.role || 'Child');
+        const role = (user.userRole?.role || 'Parent');
         const tokens = await this.generateTokens(user.id, email, role);
         return {
             ...tokens,
@@ -140,6 +146,7 @@ let AuthService = class AuthService {
             const user = await this.prisma.user.findUnique({
                 where: { id: payload.sub },
                 include: {
+                    userRole: true,
                     familyMembers: {
                         include: {
                             family: true,
@@ -150,8 +157,7 @@ let AuthService = class AuthService {
             if (!user) {
                 throw new common_1.UnauthorizedException('Invalid refresh token');
             }
-            const familyMember = user.familyMembers[0];
-            const role = familyMember?.role || 'Child';
+            const role = user.userRole?.role || 'Parent';
             const accessToken = this.jwtService.sign({ sub: user.id, email: user.email, role }, {
                 expiresIn: '15m',
             });
@@ -177,6 +183,7 @@ let AuthService = class AuthService {
             where: { id: userId },
             include: {
                 profile: true,
+                userRole: true,
                 familyMembers: {
                     include: {
                         family: true,
@@ -187,8 +194,8 @@ let AuthService = class AuthService {
         if (!user) {
             return null;
         }
+        const role = user.userRole?.role || 'Parent';
         const familyMember = user.familyMembers[0];
-        const role = familyMember?.role || 'Child';
         return {
             id: user.id,
             email: user.email,

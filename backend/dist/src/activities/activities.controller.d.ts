@@ -16,21 +16,21 @@ export declare class ActivitiesController {
             } | null;
         } & {
             email: string;
-            displayName: string;
-            id: number;
             passwordHash: string;
+            displayName: string;
             avatarUrl: string | null;
             createdAt: Date;
             status: string;
+            id: number;
         }) | null;
     } & {
-        id: number;
         createdAt: Date;
+        id: number;
         familyId: number;
+        refId: number | null;
         userId: number | null;
         type: string;
         message: string;
-        refId: number | null;
     })[]>;
     getRecentActivities(user: any, hours?: number): Promise<({
         user: ({
@@ -46,21 +46,21 @@ export declare class ActivitiesController {
             } | null;
         } & {
             email: string;
-            displayName: string;
-            id: number;
             passwordHash: string;
+            displayName: string;
             avatarUrl: string | null;
             createdAt: Date;
             status: string;
+            id: number;
         }) | null;
     } & {
-        id: number;
         createdAt: Date;
+        id: number;
         familyId: number;
+        refId: number | null;
         userId: number | null;
         type: string;
         message: string;
-        refId: number | null;
     })[]>;
     getActivityStats(user: any): Promise<{
         totalActivities: number;
@@ -84,21 +84,21 @@ export declare class ActivitiesController {
             } | null;
         } & {
             email: string;
-            displayName: string;
-            id: number;
             passwordHash: string;
+            displayName: string;
             avatarUrl: string | null;
             createdAt: Date;
             status: string;
+            id: number;
         }) | null;
     } & {
-        id: number;
         createdAt: Date;
+        id: number;
         familyId: number;
+        refId: number | null;
         userId: number | null;
         type: string;
         message: string;
-        refId: number | null;
     })[]>;
     getActivity(activityId: number, user: any): Promise<{
         user: ({
@@ -114,20 +114,20 @@ export declare class ActivitiesController {
             } | null;
         } & {
             email: string;
-            displayName: string;
-            id: number;
             passwordHash: string;
+            displayName: string;
             avatarUrl: string | null;
             createdAt: Date;
             status: string;
+            id: number;
         }) | null;
     } & {
-        id: number;
         createdAt: Date;
+        id: number;
         familyId: number;
+        refId: number | null;
         userId: number | null;
         type: string;
         message: string;
-        refId: number | null;
     }>;
 }

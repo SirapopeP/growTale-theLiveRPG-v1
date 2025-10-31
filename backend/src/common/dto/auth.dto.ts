@@ -1,6 +1,7 @@
 import { IsEmail, IsString, MinLength, IsEnum } from 'class-validator';
 
 export enum UserRole {
+  ADMIN = 'Admin',
   PARENT = 'Parent',
   CHILD = 'Child',
 }

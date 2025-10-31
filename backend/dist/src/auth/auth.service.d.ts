@@ -15,7 +15,7 @@ export declare class AuthService {
         id: number;
         email: string;
         displayName: string;
-        role: string;
+        role: import("@prisma/client").$Enums.Role;
         profile: {
             id: number;
             level: number;
@@ -27,9 +27,9 @@ export declare class AuthService {
             userId: number;
         } | null;
         family: {
-            id: number;
             createdAt: Date;
             status: string;
+            id: number;
             name: string;
             inviteCode: string;
         };

@@ -17,20 +17,20 @@ export declare class RewardsService {
             } | null;
         } & {
             email: string;
-            displayName: string;
-            id: number;
             passwordHash: string;
+            displayName: string;
             avatarUrl: string | null;
             createdAt: Date;
             status: string;
+            id: number;
         };
     } & {
-        id: number;
         createdAt: Date;
         status: string;
-        familyId: number;
+        id: number;
         title: string;
         description: string | null;
+        familyId: number;
         createdBy: number;
         costCoin: number;
         stock: number;
@@ -40,12 +40,12 @@ export declare class RewardsService {
         availableStock: number;
         canRedeem: boolean;
         redeemLogs: {
-            id: number;
             createdAt: Date;
             status: string;
+            id: number;
             familyId: number;
-            userId: number;
             costCoin: number;
+            userId: number;
             rewardId: number;
             approvedBy: number | null;
             approvedAt: Date | null;
@@ -63,19 +63,19 @@ export declare class RewardsService {
             } | null;
         } & {
             email: string;
-            displayName: string;
-            id: number;
             passwordHash: string;
+            displayName: string;
             avatarUrl: string | null;
             createdAt: Date;
             status: string;
+            id: number;
         };
-        id: number;
         createdAt: Date;
         status: string;
-        familyId: number;
+        id: number;
         title: string;
         description: string | null;
+        familyId: number;
         createdBy: number;
         costCoin: number;
         stock: number;
@@ -96,20 +96,20 @@ export declare class RewardsService {
                 } | null;
             } & {
                 email: string;
-                displayName: string;
-                id: number;
                 passwordHash: string;
+                displayName: string;
                 avatarUrl: string | null;
                 createdAt: Date;
                 status: string;
+                id: number;
             };
         } & {
-            id: number;
             createdAt: Date;
             status: string;
+            id: number;
             familyId: number;
-            userId: number;
             costCoin: number;
+            userId: number;
             rewardId: number;
             approvedBy: number | null;
             approvedAt: Date | null;
@@ -127,20 +127,20 @@ export declare class RewardsService {
             } | null;
         } & {
             email: string;
-            displayName: string;
-            id: number;
             passwordHash: string;
+            displayName: string;
             avatarUrl: string | null;
             createdAt: Date;
             status: string;
+            id: number;
         };
     } & {
-        id: number;
         createdAt: Date;
         status: string;
-        familyId: number;
+        id: number;
         title: string;
         description: string | null;
+        familyId: number;
         createdBy: number;
         costCoin: number;
         stock: number;
@@ -160,32 +160,32 @@ export declare class RewardsService {
             } | null;
         } & {
             email: string;
-            displayName: string;
-            id: number;
             passwordHash: string;
+            displayName: string;
             avatarUrl: string | null;
             createdAt: Date;
             status: string;
+            id: number;
         };
         reward: {
-            id: number;
             createdAt: Date;
             status: string;
-            familyId: number;
+            id: number;
             title: string;
             description: string | null;
+            familyId: number;
             createdBy: number;
             costCoin: number;
             stock: number;
             expireAt: Date | null;
         };
     } & {
-        id: number;
         createdAt: Date;
         status: string;
+        id: number;
         familyId: number;
-        userId: number;
         costCoin: number;
+        userId: number;
         rewardId: number;
         approvedBy: number | null;
         approvedAt: Date | null;
@@ -204,32 +204,32 @@ export declare class RewardsService {
             } | null;
         } & {
             email: string;
-            displayName: string;
-            id: number;
             passwordHash: string;
+            displayName: string;
             avatarUrl: string | null;
             createdAt: Date;
             status: string;
+            id: number;
         };
         reward: {
-            id: number;
             createdAt: Date;
             status: string;
-            familyId: number;
+            id: number;
             title: string;
             description: string | null;
+            familyId: number;
             createdBy: number;
             costCoin: number;
             stock: number;
             expireAt: Date | null;
         };
     } & {
-        id: number;
         createdAt: Date;
         status: string;
+        id: number;
         familyId: number;
-        userId: number;
         costCoin: number;
+        userId: number;
         rewardId: number;
         approvedBy: number | null;
         approvedAt: Date | null;
@@ -248,32 +248,32 @@ export declare class RewardsService {
             } | null;
         } & {
             email: string;
-            displayName: string;
-            id: number;
             passwordHash: string;
+            displayName: string;
             avatarUrl: string | null;
             createdAt: Date;
             status: string;
+            id: number;
         };
         reward: {
-            id: number;
             createdAt: Date;
             status: string;
-            familyId: number;
+            id: number;
             title: string;
             description: string | null;
+            familyId: number;
             createdBy: number;
             costCoin: number;
             stock: number;
             expireAt: Date | null;
         };
     } & {
-        id: number;
         createdAt: Date;
         status: string;
+        id: number;
         familyId: number;
-        userId: number;
         costCoin: number;
+        userId: number;
         rewardId: number;
         approvedBy: number | null;
         approvedAt: Date | null;
@@ -292,20 +292,20 @@ export declare class RewardsService {
             } | null;
         } & {
             email: string;
-            displayName: string;
-            id: number;
             passwordHash: string;
+            displayName: string;
             avatarUrl: string | null;
             createdAt: Date;
             status: string;
+            id: number;
         };
     } & {
-        id: number;
         createdAt: Date;
         status: string;
-        familyId: number;
+        id: number;
         title: string;
         description: string | null;
+        familyId: number;
         createdBy: number;
         costCoin: number;
         stock: number;

@@ -19,24 +19,24 @@ export declare class FamiliesService {
                 } | null;
             } & {
                 email: string;
-                displayName: string;
-                id: number;
                 passwordHash: string;
+                displayName: string;
                 avatarUrl: string | null;
                 createdAt: Date;
                 status: string;
+                id: number;
             };
         } & {
-            role: string;
             id: number;
+            role: import("@prisma/client").$Enums.FamilyRole;
             familyId: number;
             userId: number;
             joinedAt: Date;
         })[];
     } & {
-        id: number;
         createdAt: Date;
         status: string;
+        id: number;
         name: string;
         inviteCode: string;
     }>;
@@ -55,24 +55,24 @@ export declare class FamiliesService {
                 } | null;
             } & {
                 email: string;
-                displayName: string;
-                id: number;
                 passwordHash: string;
+                displayName: string;
                 avatarUrl: string | null;
                 createdAt: Date;
                 status: string;
+                id: number;
             };
         } & {
-            role: string;
             id: number;
+            role: import("@prisma/client").$Enums.FamilyRole;
             familyId: number;
             userId: number;
             joinedAt: Date;
         })[];
     } & {
-        id: number;
         createdAt: Date;
         status: string;
+        id: number;
         name: string;
         inviteCode: string;
     }>;
@@ -91,24 +91,24 @@ export declare class FamiliesService {
                 } | null;
             } & {
                 email: string;
-                displayName: string;
-                id: number;
                 passwordHash: string;
+                displayName: string;
                 avatarUrl: string | null;
                 createdAt: Date;
                 status: string;
+                id: number;
             };
         } & {
-            role: string;
             id: number;
+            role: import("@prisma/client").$Enums.FamilyRole;
             familyId: number;
             userId: number;
             joinedAt: Date;
         })[];
     } & {
-        id: number;
         createdAt: Date;
         status: string;
+        id: number;
         name: string;
         inviteCode: string;
     }>;
@@ -126,16 +126,16 @@ export declare class FamiliesService {
             } | null;
         } & {
             email: string;
-            displayName: string;
-            id: number;
             passwordHash: string;
+            displayName: string;
             avatarUrl: string | null;
             createdAt: Date;
             status: string;
+            id: number;
         };
     } & {
-        role: string;
         id: number;
+        role: import("@prisma/client").$Enums.FamilyRole;
         familyId: number;
         userId: number;
         joinedAt: Date;
@@ -155,24 +155,24 @@ export declare class FamiliesService {
                 } | null;
             } & {
                 email: string;
-                displayName: string;
-                id: number;
                 passwordHash: string;
+                displayName: string;
                 avatarUrl: string | null;
                 createdAt: Date;
                 status: string;
+                id: number;
             };
         } & {
-            role: string;
             id: number;
+            role: import("@prisma/client").$Enums.FamilyRole;
             familyId: number;
             userId: number;
             joinedAt: Date;
         })[];
     } & {
-        id: number;
         createdAt: Date;
         status: string;
+        id: number;
         name: string;
         inviteCode: string;
     }) | null>;

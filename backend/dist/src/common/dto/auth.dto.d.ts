@@ -1,4 +1,5 @@
 export declare enum UserRole {
+    ADMIN = "Admin",
     PARENT = "Parent",
     CHILD = "Child"
 }

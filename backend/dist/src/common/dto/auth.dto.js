@@ -13,6 +13,7 @@ exports.AuthResponseDto = exports.RefreshTokenDto = exports.LoginDto = exports.R
 const class_validator_1 = require("class-validator");
 var UserRole;
 (function (UserRole) {
+    UserRole["ADMIN"] = "Admin";
     UserRole["PARENT"] = "Parent";
     UserRole["CHILD"] = "Child";
 })(UserRole || (exports.UserRole = UserRole = {}));

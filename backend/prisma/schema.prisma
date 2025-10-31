@@ -10,6 +10,29 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Role {
+  Admin
+  Parent
+  Child
+}
+
+enum FamilyRole {
+  Parent
+  Child
+}
+
+model UserRole {
+  id        Int      @id @default(autoincrement())
+  userId    Int      @unique @map("user_id")
+  role      Role     @default(Parent)
+  createdAt DateTime @default(now()) @map("created_at")
+
+  // Relations
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("user_roles")
+}
+
 model Family {
   id          Int      @id @default(autoincrement())
   name        String   @db.VarChar(100)
@@ -28,11 +51,11 @@ model Family {
 }
 
 model FamilyMember {
-  id        Int      @id @default(autoincrement())
-  familyId  Int      @map("family_id")
-  userId    Int      @map("user_id")
-  role      String   @db.VarChar(20) // 'Parent' or 'Child'
-  joinedAt  DateTime @default(now()) @map("joined_at")
+  id        Int        @id @default(autoincrement())
+  familyId  Int        @map("family_id")
+  userId    Int        @map("user_id")
+  role      FamilyRole // 'Parent' or 'Child'
+  joinedAt  DateTime   @default(now()) @map("joined_at")
 
   // Relations
   family    Family @relation(fields: [familyId], references: [id], onDelete: Cascade)
@@ -52,6 +75,7 @@ model User {
   status       String   @default("active") @db.VarChar(20)
 
   // Relations
+  userRole     UserRole?
   profile      Profile?
   familyMembers FamilyMember[]
   createdQuests Quest[] @relation("QuestCreator")
@@ -97,7 +121,7 @@ model Quest {
 
   // Relations
   family      Family     @relation(fields: [familyId], references: [id], onDelete: Cascade)
-  creator     User       @relation("QuestCreator", fields: [createdBy], references: [id], onDelete: SetNull)
+  creator     User       @relation("QuestCreator", fields: [createdBy], references: [id], onDelete: Restrict)
   assignee    User?      @relation("QuestAssignee", fields: [assignedTo], references: [id], onDelete: SetNull)
   questLogs   QuestLog[]
 
@@ -134,7 +158,7 @@ model Reward {
 
   // Relations
   family      Family        @relation(fields: [familyId], references: [id], onDelete: Cascade)
-  creator     User          @relation("RewardCreator", fields: [createdBy], references: [id], onDelete: SetNull)
+  creator     User          @relation("RewardCreator", fields: [createdBy], references: [id], onDelete: Restrict)
   redeemLogs  RewardRedeem[]
 
   @@map("rewards")

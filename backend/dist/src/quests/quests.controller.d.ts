@@ -18,12 +18,12 @@ export declare class QuestsController {
             } | null;
         } & {
             email: string;
-            displayName: string;
-            id: number;
             passwordHash: string;
+            displayName: string;
             avatarUrl: string | null;
             createdAt: Date;
             status: string;
+            id: number;
         };
         assignee: ({
             profile: {
@@ -38,31 +38,31 @@ export declare class QuestsController {
             } | null;
         } & {
             email: string;
-            displayName: string;
-            id: number;
             passwordHash: string;
+            displayName: string;
             avatarUrl: string | null;
             createdAt: Date;
             status: string;
+            id: number;
         }) | null;
     } & {
-        id: number;
         createdAt: Date;
         status: string;
-        familyId: number;
+        id: number;
         title: string;
         description: string | null;
         category: string | null;
         rewardExp: number;
         rewardCoin: number;
         dueDate: Date | null;
-        assignedTo: number | null;
+        familyId: number;
         createdBy: number;
+        assignedTo: number | null;
     }>;
     getQuests(user: any, status?: string, assignedTo?: number): Promise<({
         questLogs: {
-            id: number;
             createdAt: Date;
+            id: number;
             userId: number;
             note: string | null;
             evidenceUrl: string | null;
@@ -82,12 +82,12 @@ export declare class QuestsController {
             } | null;
         } & {
             email: string;
-            displayName: string;
-            id: number;
             passwordHash: string;
+            displayName: string;
             avatarUrl: string | null;
             createdAt: Date;
             status: string;
+            id: number;
         };
         assignee: ({
             profile: {
@@ -102,31 +102,31 @@ export declare class QuestsController {
             } | null;
         } & {
             email: string;
-            displayName: string;
-            id: number;
             passwordHash: string;
+            displayName: string;
             avatarUrl: string | null;
             createdAt: Date;
             status: string;
+            id: number;
         }) | null;
     } & {
-        id: number;
         createdAt: Date;
         status: string;
-        familyId: number;
+        id: number;
         title: string;
         description: string | null;
         category: string | null;
         rewardExp: number;
         rewardCoin: number;
         dueDate: Date | null;
-        assignedTo: number | null;
+        familyId: number;
         createdBy: number;
+        assignedTo: number | null;
     })[]>;
     getQuest(questId: number, user: any): Promise<{
         questLogs: {
-            id: number;
             createdAt: Date;
+            id: number;
             userId: number;
             note: string | null;
             evidenceUrl: string | null;
@@ -146,12 +146,12 @@ export declare class QuestsController {
             } | null;
         } & {
             email: string;
-            displayName: string;
-            id: number;
             passwordHash: string;
+            displayName: string;
             avatarUrl: string | null;
             createdAt: Date;
             status: string;
+            id: number;
         };
         assignee: ({
             profile: {
@@ -166,26 +166,26 @@ export declare class QuestsController {
             } | null;
         } & {
             email: string;
-            displayName: string;
-            id: number;
             passwordHash: string;
+            displayName: string;
             avatarUrl: string | null;
             createdAt: Date;
             status: string;
+            id: number;
         }) | null;
     } & {
-        id: number;
         createdAt: Date;
         status: string;
-        familyId: number;
+        id: number;
         title: string;
         description: string | null;
         category: string | null;
         rewardExp: number;
         rewardCoin: number;
         dueDate: Date | null;
-        assignedTo: number | null;
+        familyId: number;
         createdBy: number;
+        assignedTo: number | null;
     }>;
     startQuest(questId: number, user: any): Promise<{
         creator: {
@@ -201,12 +201,12 @@ export declare class QuestsController {
             } | null;
         } & {
             email: string;
-            displayName: string;
-            id: number;
             passwordHash: string;
+            displayName: string;
             avatarUrl: string | null;
             createdAt: Date;
             status: string;
+            id: number;
         };
         assignee: ({
             profile: {
@@ -221,26 +221,26 @@ export declare class QuestsController {
             } | null;
         } & {
             email: string;
-            displayName: string;
-            id: number;
             passwordHash: string;
+            displayName: string;
             avatarUrl: string | null;
             createdAt: Date;
             status: string;
+            id: number;
         }) | null;
     } & {
-        id: number;
         createdAt: Date;
         status: string;
-        familyId: number;
+        id: number;
         title: string;
         description: string | null;
         category: string | null;
         rewardExp: number;
         rewardCoin: number;
         dueDate: Date | null;
-        assignedTo: number | null;
+        familyId: number;
         createdBy: number;
+        assignedTo: number | null;
     }>;
     submitQuest(questId: number, user: any, submitQuestDto: SubmitQuestDto): Promise<{
         creator: {
@@ -256,12 +256,12 @@ export declare class QuestsController {
             } | null;
         } & {
             email: string;
-            displayName: string;
-            id: number;
             passwordHash: string;
+            displayName: string;
             avatarUrl: string | null;
             createdAt: Date;
             status: string;
+            id: number;
         };
         assignee: ({
             profile: {
@@ -276,26 +276,26 @@ export declare class QuestsController {
             } | null;
         } & {
             email: string;
-            displayName: string;
-            id: number;
             passwordHash: string;
+            displayName: string;
             avatarUrl: string | null;
             createdAt: Date;
             status: string;
+            id: number;
         }) | null;
     } & {
-        id: number;
         createdAt: Date;
         status: string;
-        familyId: number;
+        id: number;
         title: string;
         description: string | null;
         category: string | null;
         rewardExp: number;
         rewardCoin: number;
         dueDate: Date | null;
-        assignedTo: number | null;
+        familyId: number;
         createdBy: number;
+        assignedTo: number | null;
     }>;
     verifyQuest(questId: number, user: any, approved: boolean): Promise<{
         creator: {
@@ -311,12 +311,12 @@ export declare class QuestsController {
             } | null;
         } & {
             email: string;
-            displayName: string;
-            id: number;
             passwordHash: string;
+            displayName: string;
             avatarUrl: string | null;
             createdAt: Date;
             status: string;
+            id: number;
         };
         assignee: ({
             profile: {
@@ -331,26 +331,26 @@ export declare class QuestsController {
             } | null;
         } & {
             email: string;
-            displayName: string;
-            id: number;
             passwordHash: string;
+            displayName: string;
             avatarUrl: string | null;
             createdAt: Date;
             status: string;
+            id: number;
         }) | null;
     } & {
-        id: number;
         createdAt: Date;
         status: string;
-        familyId: number;
+        id: number;
         title: string;
         description: string | null;
         category: string | null;
         rewardExp: number;
         rewardCoin: number;
         dueDate: Date | null;
-        assignedTo: number | null;
+        familyId: number;
         createdBy: number;
+        assignedTo: number | null;
     }>;
     deleteQuest(questId: number, user: any): Promise<{
         message: string;

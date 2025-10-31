@@ -8,7 +8,7 @@ export declare class UsersService {
         email: string;
         displayName: string;
         avatarUrl: string | null;
-        role: string;
+        role: import("@prisma/client").$Enums.FamilyRole;
         profile: {
             id: number;
             level: number;
@@ -20,9 +20,9 @@ export declare class UsersService {
             userId: number;
         } | null;
         family: {
-            id: number;
             createdAt: Date;
             status: string;
+            id: number;
             name: string;
             inviteCode: string;
         };
@@ -32,7 +32,7 @@ export declare class UsersService {
         email: string;
         displayName: string;
         avatarUrl: string | null;
-        role: string;
+        role: import("@prisma/client").$Enums.FamilyRole;
         profile: {
             id: number;
             level: number;
@@ -44,9 +44,9 @@ export declare class UsersService {
             userId: number;
         } | null;
         family: {
-            id: number;
             createdAt: Date;
             status: string;
+            id: number;
             name: string;
             inviteCode: string;
         };
@@ -55,7 +55,7 @@ export declare class UsersService {
         id: number;
         displayName: string;
         avatarUrl: string | null;
-        role: string;
+        role: import("@prisma/client").$Enums.FamilyRole;
         profile: {
             id: number;
             level: number;
