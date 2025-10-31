@@ -112,15 +112,14 @@ export class AuthService {
   }
 
   async login(loginDto: LoginDto): Promise<AuthResponseDto> {
-    const { identifier, password } = loginDto;
+    let { identifier, password } = loginDto;
+    identifier = identifier?.trim();
+    if (identifier?.includes('@')) identifier = identifier.toLowerCase();
 
     // Find user with userRole
     const user = await this.prisma.user.findFirst({
       where: {
-        OR: [
-          { email: identifier },
-          { phone: identifier },
-        ],
+        OR: [{ email: identifier }, { phone: identifier }],
       },
       include: {
         profile: true,

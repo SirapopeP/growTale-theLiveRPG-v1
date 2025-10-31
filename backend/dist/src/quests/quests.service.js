@@ -65,16 +65,25 @@ let QuestsService = class QuestsService {
         return quest;
     }
     async getQuests(userId, status, assignedTo) {
-        const userFamily = await this.prisma.familyMember.findFirst({
-            where: { userId },
-            include: { family: true },
+        const user = await this.prisma.user.findUnique({
+            where: { id: userId },
+            include: { userRole: true },
         });
-        if (!userFamily) {
-            throw new common_1.ForbiddenException('User must be in a family to view quests');
+        const isAdmin = user?.userRole?.role === 'Admin';
+        let where = {};
+        if (isAdmin) {
+            where = {};
         }
-        const where = {
-            familyId: userFamily.familyId,
-        };
+        else {
+            const userFamily = await this.prisma.familyMember.findFirst({
+                where: { userId },
+                include: { family: true },
+            });
+            if (!userFamily) {
+                throw new common_1.ForbiddenException('User must be in a family to view quests');
+            }
+            where.familyId = userFamily.familyId;
+        }
         if (status) {
             where.status = status;
         }
@@ -125,11 +134,15 @@ let QuestsService = class QuestsService {
         if (!quest) {
             throw new common_1.NotFoundException('Quest not found');
         }
-        const userFamily = await this.prisma.familyMember.findFirst({
-            where: { userId, familyId: quest.familyId },
-        });
-        if (!userFamily) {
-            throw new common_1.ForbiddenException('You can only view quests from your family');
+        const user = await this.prisma.user.findUnique({ where: { id: userId }, include: { userRole: true } });
+        const isAdmin = user?.userRole?.role === 'Admin';
+        if (!isAdmin) {
+            const userFamily = await this.prisma.familyMember.findFirst({
+                where: { userId, familyId: quest.familyId },
+            });
+            if (!userFamily) {
+                throw new common_1.ForbiddenException('You can only view quests from your family');
+            }
         }
         return quest;
     }

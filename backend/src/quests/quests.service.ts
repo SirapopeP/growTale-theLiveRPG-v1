@@ -64,19 +64,31 @@ export class QuestsService {
   }
 
   async getQuests(userId: number, status?: string, assignedTo?: number) {
-    // Get user's family
-    const userFamily = await this.prisma.familyMember.findFirst({
-      where: { userId },
-      include: { family: true },
+    // Check role
+    const user = await this.prisma.user.findUnique({
+      where: { id: userId },
+      include: { userRole: true },
     });
 
-    if (!userFamily) {
-      throw new ForbiddenException('User must be in a family to view quests');
-    }
+    const isAdmin = user?.userRole?.role === 'Admin';
 
-    const where: any = {
-      familyId: userFamily.familyId,
-    };
+    let where: any = {};
+    if (isAdmin) {
+      // Admin can see all quests
+      where = {};
+    } else {
+      // Get user's family
+      const userFamily = await this.prisma.familyMember.findFirst({
+        where: { userId },
+        include: { family: true },
+      });
+
+      if (!userFamily) {
+        throw new ForbiddenException('User must be in a family to view quests');
+      }
+
+      where.familyId = userFamily.familyId;
+    }
 
     if (status) {
       where.status = status;
@@ -134,13 +146,19 @@ export class QuestsService {
       throw new NotFoundException('Quest not found');
     }
 
-    // Check if user is in the same family
-    const userFamily = await this.prisma.familyMember.findFirst({
-      where: { userId, familyId: quest.familyId },
-    });
+    // Admin can view any quest
+    const user = await this.prisma.user.findUnique({ where: { id: userId }, include: { userRole: true } });
+    const isAdmin = user?.userRole?.role === 'Admin';
 
-    if (!userFamily) {
-      throw new ForbiddenException('You can only view quests from your family');
+    if (!isAdmin) {
+      // Check if user is in the same family
+      const userFamily = await this.prisma.familyMember.findFirst({
+        where: { userId, familyId: quest.familyId },
+      });
+
+      if (!userFamily) {
+        throw new ForbiddenException('You can only view quests from your family');
+      }
     }
 
     return quest;

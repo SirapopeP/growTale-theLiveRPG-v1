@@ -3,11 +3,13 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useAuth } from '@/contexts/AuthContext';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
+import { ThemeToggle } from '@/components/ThemeToggle';
 
 export default function TopNav() {
   const { user, logout } = useAuth();
   const router = useRouter();
+  const pathname = usePathname();
 
   return (
     <header className="w-full bg-base-100/80 backdrop-blur border-b border-base-300">
@@ -26,12 +28,13 @@ export default function TopNav() {
         </nav>
 
         <div className="ml-auto flex items-center gap-4">
+          <ThemeToggle />
           <div className="hidden sm:flex items-center gap-2 text-base-content/80">
             <span className="hover:text-base-content cursor-pointer">EN</span>
             <span>|</span>
             <span className="hover:text-base-content cursor-pointer">TH</span>
           </div>
-          {user ? (
+          {pathname === '/login' ? null : user ? (
             <button
               className="btn-gt-secondary px-4 py-2 rounded-lg"
               onClick={() => { logout(); router.push('/login'); }}

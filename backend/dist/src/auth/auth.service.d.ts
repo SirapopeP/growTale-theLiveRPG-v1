@@ -25,18 +25,18 @@ export declare class AuthService {
         role: import("@prisma/client").$Enums.Role;
         profile: {
             id: number;
+            userId: number;
             level: number;
             exp: number;
             coin: number;
             stats: import("@prisma/client/runtime/library").JsonValue;
             badges: import("@prisma/client/runtime/library").JsonValue;
             updatedAt: Date;
-            userId: number;
         } | null;
         family: {
+            id: number;
             createdAt: Date;
             status: string;
-            id: number;
             name: string;
             inviteCode: string;
         };

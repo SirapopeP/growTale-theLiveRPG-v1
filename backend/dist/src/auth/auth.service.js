@@ -126,13 +126,13 @@ let AuthService = class AuthService {
         return { exists: !!existing, type: value.includes('@') ? 'email' : 'phone' };
     }
     async login(loginDto) {
-        const { identifier, password } = loginDto;
+        let { identifier, password } = loginDto;
+        identifier = identifier?.trim();
+        if (identifier?.includes('@'))
+            identifier = identifier.toLowerCase();
         const user = await this.prisma.user.findFirst({
             where: {
-                OR: [
-                    { email: identifier },
-                    { phone: identifier },
-                ],
+                OR: [{ email: identifier }, { phone: identifier }],
             },
             include: {
                 profile: true,

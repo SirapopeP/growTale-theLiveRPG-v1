@@ -17,6 +17,7 @@ export default function QuestsPage() {
     category: 'บ้าน',
     rewardExp: 10,
     rewardCoin: 5,
+    dueDate: '',
     assignedTo: undefined,
   });
 
@@ -31,6 +32,7 @@ export default function QuestsPage() {
         category: 'บ้าน',
         rewardExp: 10,
         rewardCoin: 5,
+        dueDate: '',
         assignedTo: undefined,
       });
     } catch (error) {
@@ -260,7 +262,7 @@ export default function QuestsPage() {
                 <input
                   type="date"
                   className="input input-bordered"
-                  value={createForm.dueDate}
+                  value={createForm.dueDate || ''}
                   onChange={(e) => setCreateForm({ ...createForm, dueDate: e.target.value })}
                 />
               </div>
