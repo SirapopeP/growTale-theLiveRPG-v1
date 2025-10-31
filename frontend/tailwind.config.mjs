@@ -51,23 +51,56 @@ const config = {
   plugins: [daisyui],
   daisyui: {
     themes: [
+      // Light theme mapped to provided palette
       {
-        growtale: {
-          "primary": "#3b82f6",
-          "secondary": "#8b5cf6", 
-          "accent": "#f59e0b",
-          "neutral": "#374151",
-          "base-100": "#ffffff",
-          "base-200": "#f3f4f6",
-          "base-300": "#e5e7eb",
-          "info": "#3b82f6",
-          "success": "#10b981",
-          "warning": "#f59e0b",
-          "error": "#ef4444",
+        light: {
+          // Surfaces
+          "base-100": "#FFFFFF", // space/surface
+          "base-200": "#F4FBF8", // soft background
+          "base-300": "#E6F3ED", // borders/dividers
+          "base-content": "#5D776B", // main text
+
+          // Brand
+          primary: "#90E9C0",
+          "primary-content": "#355C4F",
+          secondary: "#60947C",
+          "secondary-content": "#FFFFFF",
+          accent: "#90E9C0",
+
+          // Others
+          neutral: "#5D776B",
+          "neutral-content": "#FFFFFF",
+          info: "#3b82f6",
+          success: "#16a34a",
+          warning: "#f59e0b",
+          error: "#ef4444",
         },
       },
-      "light",
-      "dark",
+      // Dark theme mapped to provided palette
+      {
+        dark: {
+          // Surfaces
+          "base-100": "#363636",
+          "base-200": "#2B2B2B",
+          "base-300": "#404040",
+          "base-content": "#C6E9D9", // main text
+
+          // Brand
+          primary: "#90E9C0",
+          "primary-content": "#1C2E28",
+          secondary: "#60947C",
+          "secondary-content": "#FFFFFF",
+          accent: "#90E9C0",
+
+          // Others
+          neutral: "#C6E9D9",
+          "neutral-content": "#1C2E28",
+          info: "#93c5fd",
+          success: "#22c55e",
+          warning: "#fbbf24",
+          error: "#f87171",
+        },
+      },
     ],
   },
 };

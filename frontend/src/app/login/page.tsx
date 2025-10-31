@@ -30,64 +30,76 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-base-200">
-      <div className="card w-96 bg-base-100 card-elevate interactive rounded-xl">
-        <div className="card-body">
-          <h1 className="card-title text-2xl font-bold text-center mb-6">
-            เข้าสู่ระบบ GrowTale
-          </h1>
-          
+    <div className="min-h-[calc(100svh-64px)] w-full overflow-hidden flex items-center justify-center bg-gradient-to-b from-[var(--gt-bg-from)] to-[var(--gt-bg-to)]">
+      <div className="w-[420px] bg-base-100 shadow-xl rounded-2xl border border-base-300">
+        <div className="p-8">
+          <div className="text-center mb-6">
+            <div className="text-sm text-base-content">Welcome to</div>
+            <div className="mt-1 flex items-center justify-center gap-1 select-none">
+              <span className="text-[34px] leading-none font-semibold tracking-wide text-base-content">Grow</span>
+              {/* Wrap tale to anchor the leaf absolutely */}
+              <span className="relative inline-block text-[34px] leading-none font-semibold tracking-wide text-gt-primary">
+                tale
+                <img
+                  src="/assets/DLeaf.svg"
+                  alt="leaf"
+                  className="absolute -top-2 -right-6 h-5 w-7"
+                />
+              </span>
+            </div>
+            <div className="mt-2 text-sm font-semibold tracking-wide text-base-content">THE LIVE RPG</div>
+          </div>
+
           {error && (
-            <div className="alert alert-error mb-4">
-              <span>{error}</span>
+            <div className="mb-4 rounded-lg bg-error/10 text-error px-3 py-2 text-sm">
+              {error}
             </div>
           )}
 
           <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">อีเมล</span>
-              </label>
+            <div>
               <input
-                type="email"
-                className="input input-bordered"
+                type="text"
+                placeholder="Email or Tel"
+                className="w-full input input-bordered rounded-lg focus:outline-none focus:border-primary px-4 py-3 text-base-content placeholder-base-content/50"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
               />
             </div>
 
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">รหัสผ่าน</span>
-              </label>
+            <div>
               <input
                 type="password"
-                className="input input-bordered"
+                placeholder="Password"
+                className="w-full input input-bordered rounded-lg focus:outline-none focus:border-primary px-4 py-3 text-base-content placeholder-base-content/50"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />
             </div>
 
-            <div className="form-control mt-6">
-              <button
-                type="submit"
-                className={`btn btn-primary focus-ring interactive ${loading ? 'loading' : ''}`}
-                disabled={loading}
-              >
-                {loading ? 'กำลังเข้าสู่ระบบ...' : 'เข้าสู่ระบบ'}
-              </button>
-            </div>
+            <button
+              type="submit"
+              className={`w-full rounded-lg btn-gt-primary ${loading ? 'loading' : ''}`}
+              disabled={loading}
+            >
+              {loading ? 'Signing in...' : 'Sign in'}
+            </button>
           </form>
 
-          <div className="divider">หรือ</div>
-
-          <div className="text-center">
-            <Link href="/register" className="link link-primary smooth-transform focus-ring">
-              สมัครสมาชิกใหม่
-            </Link>
+          <div className="my-4 flex items-center gap-4">
+            <span className="flex-1 h-px bg-base-300" />
+            <span className="text-xs text-base-content">or</span>
+            <span className="flex-1 h-px bg-base-300" />
           </div>
+
+          <Link
+            href="/register"
+            className="w-full rounded-lg btn-gt-secondary"
+          >
+            Sign up
+          </Link>
         </div>
       </div>
     </div>

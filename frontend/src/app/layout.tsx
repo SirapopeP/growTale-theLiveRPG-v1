@@ -25,7 +25,7 @@ export default function RootLayout({
           <AuthProvider>
             <SocketProvider>
               <div className="min-h-dvh flex flex-col">
-                <header className="navbar bg-base-100/80 backdrop-blur border-b border-base-300">
+                <header className="navbar bg-base-100/80 backdrop-blur border-b border-base-300 text-base-content">
                   <div className="flex-1 px-2 text-xl font-semibold">GrowTale</div>
                   <div className="flex-none px-2">
                     <ThemeToggle />

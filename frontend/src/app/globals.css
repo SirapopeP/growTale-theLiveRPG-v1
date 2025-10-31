@@ -8,7 +8,26 @@ html, body {
 }
 
 body {
-  @apply antialiased;
+  @apply antialiased text-base-content;
+}
+
+/* Theme tokens (CSS variables) */
+:root,[data-theme='light']{
+  --gt-bg-from: #ffffff;        /* light gradient start */
+  --gt-bg-to: #C6E9D9;          /* light gradient end */
+  --gt-primary: #90E9C0;
+  --gt-primary-content: #355C4F;
+  --gt-secondary: #60947C;
+  --gt-secondary-content: #FFFFFF;
+}
+
+[data-theme='dark']{
+  --gt-bg-from: #0F1513;        /* dark gradient start */
+  --gt-bg-to: #6C8C7D;          /* dark gradient end */
+  --gt-primary: #90E9C0;
+  --gt-primary-content: #1C2E28;
+  --gt-secondary: #60947C;
+  --gt-secondary-content: #FFFFFF;
 }
 
 /* Design tokens and component presets for maintainability */
@@ -35,8 +54,37 @@ body {
   .btn-sm { @apply h-9 min-h-9 px-3 rounded-md; }
   .btn-lg { @apply h-12 min-h-12 px-6 rounded-xl; }
 
+  /* Project-specific tokens based variants (not relying on DaisyUI palette) */
+  .btn-gt-primary { @apply btn border-0; background-color: var(--gt-primary); color: var(--gt-primary-content); }
+  .btn-gt-primary:hover { filter: brightness(0.95); }
+  .btn-gt-secondary { @apply btn border-0; background-color: var(--gt-secondary); color: var(--gt-secondary-content); }
+  .btn-gt-secondary:hover { filter: brightness(1.02); }
+
+  .text-gt-primary { color: var(--gt-primary); }
+
   /* Focus styles for accessibility */
   .focus-ring {
     @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-opacity-60 focus-visible:ring-offset-2 focus-visible:ring-offset-base-100;
   }
+
+  /* Inputs */
+  .input-gt { @apply input input-bordered rounded-lg px-4 py-3 border-base-300; }
+  .input-gt:focus { outline: none; border-color: var(--gt-primary); }
+
+  /* Cards */
+  .card-gt { @apply bg-base-100 rounded-2xl border border-base-300 shadow-elev-1; }
+  .card-gt-hover { @apply bg-base-100 rounded-2xl border border-base-300 shadow-elev-1 hover:shadow-elev-2 hover:-translate-y-0.5 smooth-transform; }
+
+  /* Links */
+  .link-gt { @apply underline underline-offset-4 decoration-2; color: var(--gt-primary); }
+  .link-gt:hover { filter: brightness(0.95); }
+
+  /* Divider */
+  .divider-gt { @apply flex items-center gap-4; }
+  .divider-gt::before, .divider-gt::after { content: ""; @apply flex-1 h-px bg-base-300; }
+
+  /* Headings */
+  .h1-gt { @apply text-3xl md:text-4xl font-semibold text-base-content; }
+  .h2-gt { @apply text-2xl md:text-3xl font-semibold text-base-content; }
+  .h3-gt { @apply text-xl md:text-2xl font-semibold text-base-content; }
 }
