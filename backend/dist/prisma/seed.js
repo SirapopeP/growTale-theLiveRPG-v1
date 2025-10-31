@@ -35,6 +35,7 @@ var __importStar = (this && this.__importStar) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 const client_1 = require("@prisma/client");
 const bcrypt = __importStar(require("bcrypt"));
+const enums_1 = require("../src/common/enums");
 const prisma = new client_1.PrismaClient();
 async function main() {
     console.log('🌱 เริ่มต้น seeding ข้อมูล...');
@@ -204,7 +205,7 @@ async function main() {
             assignedTo: child.id,
             title: 'ทำการบ้านคณิตศาสตร์',
             description: 'ทำแบบฝึกหัดคณิตศาสตร์หน้า 25-30',
-            category: 'เรียน',
+            category: enums_1.QuestCategory.STUDY,
             rewardExp: 50,
             rewardCoin: 20,
             status: 'pending',
@@ -217,7 +218,7 @@ async function main() {
             assignedTo: child.id,
             title: 'เก็บของเล่นให้เรียบร้อย',
             description: 'จัดเก็บของเล่นในห้องนอนให้เรียบร้อย',
-            category: 'บ้าน',
+            category: enums_1.QuestCategory.HOME,
             rewardExp: 30,
             rewardCoin: 15,
             status: 'pending',

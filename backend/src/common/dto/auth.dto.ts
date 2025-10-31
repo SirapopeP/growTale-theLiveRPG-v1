@@ -1,10 +1,5 @@
 import { IsEmail, IsString, MinLength, IsEnum, ValidateIf } from 'class-validator';
-
-export enum UserRole {
-  ADMIN = 'Admin',
-  PARENT = 'Parent',
-  CHILD = 'Child',
-}
+import { UserRole } from '../enums';
 
 export class RegisterDto {
   // Accept either email or phone (at least one)

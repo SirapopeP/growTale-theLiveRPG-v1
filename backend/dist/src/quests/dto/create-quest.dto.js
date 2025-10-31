@@ -9,15 +9,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateQuestDto = exports.QuestCategory = void 0;
+exports.CreateQuestDto = void 0;
 const class_validator_1 = require("class-validator");
-var QuestCategory;
-(function (QuestCategory) {
-    QuestCategory["HOME"] = "\u0E1A\u0E49\u0E32\u0E19";
-    QuestCategory["STUDY"] = "\u0E40\u0E23\u0E35\u0E22\u0E19";
-    QuestCategory["HEALTH"] = "\u0E2A\u0E38\u0E02\u0E20\u0E32\u0E1E";
-    QuestCategory["BEHAVIOR"] = "\u0E1E\u0E24\u0E15\u0E34\u0E01\u0E23\u0E23\u0E21";
-})(QuestCategory || (exports.QuestCategory = QuestCategory = {}));
+const enums_1 = require("../../common/enums");
 class CreateQuestDto {
     title;
     description;
@@ -38,9 +32,11 @@ __decorate([
     __metadata("design:type", String)
 ], CreateQuestDto.prototype, "description", void 0);
 __decorate([
-    (0, class_validator_1.IsEnum)(QuestCategory),
+    (0, class_validator_1.IsInt)(),
+    (0, class_validator_1.Min)(enums_1.QuestCategory.HOME),
+    (0, class_validator_1.Max)(enums_1.QuestCategory.BEHAVIOR),
     (0, class_validator_1.IsOptional)(),
-    __metadata("design:type", String)
+    __metadata("design:type", Number)
 ], CreateQuestDto.prototype, "category", void 0);
 __decorate([
     (0, class_validator_1.IsInt)(),

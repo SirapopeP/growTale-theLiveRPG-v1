@@ -10,8 +10,8 @@ import {
   RegisterDto,
   LoginDto,
   AuthResponseDto,
-  UserRole,
 } from '../common/dto/auth.dto';
+import { UserRole } from '../common/enums';
 
 interface JwtPayload {
   sub: number;

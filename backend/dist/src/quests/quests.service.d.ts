@@ -53,7 +53,7 @@ export declare class QuestsService {
         id: number;
         title: string;
         description: string | null;
-        category: string | null;
+        category: number | null;
         rewardExp: number;
         rewardCoin: number;
         dueDate: Date | null;
@@ -119,7 +119,7 @@ export declare class QuestsService {
         id: number;
         title: string;
         description: string | null;
-        category: string | null;
+        category: number | null;
         rewardExp: number;
         rewardCoin: number;
         dueDate: Date | null;
@@ -185,7 +185,7 @@ export declare class QuestsService {
         id: number;
         title: string;
         description: string | null;
-        category: string | null;
+        category: number | null;
         rewardExp: number;
         rewardCoin: number;
         dueDate: Date | null;
@@ -242,7 +242,7 @@ export declare class QuestsService {
         id: number;
         title: string;
         description: string | null;
-        category: string | null;
+        category: number | null;
         rewardExp: number;
         rewardCoin: number;
         dueDate: Date | null;
@@ -299,7 +299,7 @@ export declare class QuestsService {
         id: number;
         title: string;
         description: string | null;
-        category: string | null;
+        category: number | null;
         rewardExp: number;
         rewardCoin: number;
         dueDate: Date | null;
@@ -356,7 +356,7 @@ export declare class QuestsService {
         id: number;
         title: string;
         description: string | null;
-        category: string | null;
+        category: number | null;
         rewardExp: number;
         rewardCoin: number;
         dueDate: Date | null;

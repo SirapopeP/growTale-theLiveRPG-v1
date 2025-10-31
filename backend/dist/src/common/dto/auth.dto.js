@@ -9,14 +9,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AuthResponseDto = exports.RefreshTokenDto = exports.LoginDto = exports.RegisterDto = exports.UserRole = void 0;
+exports.AuthResponseDto = exports.RefreshTokenDto = exports.LoginDto = exports.RegisterDto = void 0;
 const class_validator_1 = require("class-validator");
-var UserRole;
-(function (UserRole) {
-    UserRole["ADMIN"] = "Admin";
-    UserRole["PARENT"] = "Parent";
-    UserRole["CHILD"] = "Child";
-})(UserRole || (exports.UserRole = UserRole = {}));
+const enums_1 = require("../enums");
 class RegisterDto {
     email;
     phone;
@@ -45,7 +40,7 @@ __decorate([
     __metadata("design:type", String)
 ], RegisterDto.prototype, "displayName", void 0);
 __decorate([
-    (0, class_validator_1.IsEnum)(UserRole),
+    (0, class_validator_1.IsEnum)(enums_1.UserRole),
     __metadata("design:type", String)
 ], RegisterDto.prototype, "role", void 0);
 class LoginDto {

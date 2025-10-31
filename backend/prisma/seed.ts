@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 import * as bcrypt from 'bcrypt';
+import { QuestCategory } from '../src/common/enums';
 
 const prisma = new PrismaClient();
 
@@ -196,7 +197,7 @@ async function main() {
       assignedTo: child.id,
       title: 'ทำการบ้านคณิตศาสตร์',
       description: 'ทำแบบฝึกหัดคณิตศาสตร์หน้า 25-30',
-      category: 'เรียน',
+      category: QuestCategory.STUDY,
       rewardExp: 50,
       rewardCoin: 20,
       status: 'pending',
@@ -210,7 +211,7 @@ async function main() {
       assignedTo: child.id,
       title: 'เก็บของเล่นให้เรียบร้อย',
       description: 'จัดเก็บของเล่นในห้องนอนให้เรียบร้อย',
-      category: 'บ้าน',
+      category: QuestCategory.HOME,
       rewardExp: 30,
       rewardCoin: 15,
       status: 'pending',
@@ -303,4 +304,3 @@ main()
   .finally(async () => {
     await prisma.$disconnect();
   });
-

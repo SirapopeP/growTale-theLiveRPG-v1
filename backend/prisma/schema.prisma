@@ -113,7 +113,7 @@ model Quest {
   assignedTo  Int?     @map("assigned_to")
   title       String   @db.VarChar(200)
   description String?
-  category    String?  @db.VarChar(50) // "บ้าน", "เรียน", "สุขภาพ", "พฤติกรรม"
+  category    Int?     // 1=บ้าน, 2=เรียน, 3=สุขภาพ, 4=พฤติกรรม
   rewardExp   Int      @default(0) @map("reward_exp")
   rewardCoin  Int      @default(0) @map("reward_coin")
   dueDate     DateTime? @map("due_date") @db.Date

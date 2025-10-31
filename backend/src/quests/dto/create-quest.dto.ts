@@ -1,11 +1,5 @@
-import { IsString, IsOptional, IsInt, Min, IsDateString, IsEnum } from 'class-validator';
-
-export enum QuestCategory {
-  HOME = 'บ้าน',
-  STUDY = 'เรียน',
-  HEALTH = 'สุขภาพ',
-  BEHAVIOR = 'พฤติกรรม',
-}
+import { IsString, IsOptional, IsInt, Min, Max, IsDateString } from 'class-validator';
+import { QuestCategory } from '../../common/enums';
 
 export class CreateQuestDto {
   @IsString()
@@ -15,9 +9,11 @@ export class CreateQuestDto {
   @IsOptional()
   description?: string;
 
-  @IsEnum(QuestCategory)
+  @IsInt()
+  @Min(QuestCategory.HOME)
+  @Max(QuestCategory.BEHAVIOR)
   @IsOptional()
-  category?: QuestCategory;
+  category?: number;
 
   @IsInt()
   @Min(0)

@@ -1,8 +1,4 @@
-export declare enum UserRole {
-    ADMIN = "Admin",
-    PARENT = "Parent",
-    CHILD = "Child"
-}
+import { UserRole } from '../enums';
 export declare class RegisterDto {
     email?: string;
     phone?: string;
