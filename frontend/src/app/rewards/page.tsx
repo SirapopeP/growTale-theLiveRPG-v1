@@ -21,8 +21,15 @@ export default function RewardsPage() {
 
   const handleCreateReward = async (e: React.FormEvent) => {
     e.preventDefault();
+    const payload: CreateRewardRequest = {
+      title: createForm.title,
+      description: createForm.description || undefined,
+      costCoin: createForm.costCoin,
+      stock: createForm.stock,
+      expireAt: createForm.expireAt?.trim() ? createForm.expireAt : undefined,
+    };
     try {
-      await createReward(createForm);
+      await createReward(payload);
       setShowCreateModal(false);
       setCreateForm({
         title: '',

@@ -139,3 +139,17 @@ export interface JoinFamilyRequest {
 export interface CreateFamilyRequest {
   name: string;
 }
+
+export interface DashboardStats {
+  users: { total: number; parents: number; children: number; admins: number };
+  families: { total: number };
+  quests: { total: number; byStatus: Record<string, number> };
+  rewards: { total: number };
+  recentActivities: Array<{
+    id: number;
+    type: string;
+    message: string;
+    createdAt: string;
+    familyName?: string;
+  }>;
+}

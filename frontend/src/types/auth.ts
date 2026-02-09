@@ -1,9 +1,9 @@
 export interface User {
   id: number;
-  email: string;
+  email?: string;
   displayName: string;
   avatarUrl?: string;
-  role: 'Parent' | 'Child';
+  role: 'Admin' | 'Parent' | 'Child';
   profile?: {
     id: number;
     level: number;

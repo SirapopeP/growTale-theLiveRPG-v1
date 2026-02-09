@@ -1,4 +1,11 @@
-import { IsString, IsOptional, IsInt, Min, IsDateString } from 'class-validator';
+import {
+  IsString,
+  IsOptional,
+  IsInt,
+  Min,
+  IsDateString,
+  ValidateIf,
+} from 'class-validator';
 
 export class CreateRewardDto {
   @IsString()
@@ -17,6 +24,7 @@ export class CreateRewardDto {
   @IsOptional()
   stock?: number;
 
+  @ValidateIf((o) => o.expireAt != null && o.expireAt !== '')
   @IsDateString()
   @IsOptional()
   expireAt?: string;

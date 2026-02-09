@@ -6,11 +6,11 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
 export default function LoginPage() {
-  const [email, setEmail] = useState('');
+  const [identifier, setIdentifier] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  
+
   const { login } = useAuth();
   const router = useRouter();
 
@@ -20,10 +20,16 @@ export default function LoginPage() {
     setError('');
 
     try {
-      await login({ identifier: email, password });
+      await login({ identifier, password });
       router.push('/dashboard');
-    } catch (err: any) {
-      setError(err.response?.data?.message || 'เข้าสู่ระบบไม่สำเร็จ');
+    } catch (err: unknown) {
+      const message =
+        err && typeof err === 'object' && 'response' in err
+          ? (err as { response?: { data?: { message?: string } } }).response?.data?.message
+          : err instanceof Error
+            ? err.message
+            : null;
+      setError(message || 'เข้าสู่ระบบไม่สำเร็จ');
     } finally {
       setLoading(false);
     }
@@ -62,8 +68,8 @@ export default function LoginPage() {
                 type="text"
                 placeholder="Email or Tel"
                 className="w-full input input-bordered rounded-lg focus:outline-none focus:border-primary px-4 py-3 text-base-content placeholder-base-content/50"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                value={identifier}
+                onChange={(e) => setIdentifier(e.target.value)}
                 required
               />
             </div>

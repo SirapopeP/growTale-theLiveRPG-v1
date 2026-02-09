@@ -8,10 +8,20 @@ import { QuestsModule } from './quests/quests.module';
 import { RewardsModule } from './rewards/rewards.module';
 import { ActivitiesModule } from './activities/activities.module';
 import { WebSocketModule } from './websocket/websocket.module';
+import { DashboardModule } from './dashboard/dashboard.module';
 import { PrismaService } from './prisma.service';
 
 @Module({
-  imports: [AuthModule, UsersModule, FamiliesModule, QuestsModule, RewardsModule, ActivitiesModule, WebSocketModule],
+  imports: [
+    AuthModule,
+    UsersModule,
+    FamiliesModule,
+    QuestsModule,
+    RewardsModule,
+    ActivitiesModule,
+    WebSocketModule,
+    DashboardModule,
+  ],
   controllers: [AppController],
   providers: [AppService, PrismaService],
 })

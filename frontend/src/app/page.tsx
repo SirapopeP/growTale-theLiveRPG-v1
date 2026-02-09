@@ -9,13 +9,20 @@ export default function Home() {
   const router = useRouter();
 
   useEffect(() => {
-    if (!loading) {
-      if (user) {
-        router.push('/dashboard');
-      } else {
-        router.push('/login');
-      }
+    if (loading) return;
+    if (!user) {
+      router.replace('/login');
+      return;
     }
+    if (user.role === 'Admin') {
+      router.replace('/dashboard');
+      return;
+    }
+    if (user.role === 'Child') {
+      router.replace('/home/child');
+      return;
+    }
+    router.replace('/home');
   }, [user, loading, router]);
 
   if (loading) {
